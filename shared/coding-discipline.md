@@ -21,6 +21,5 @@ karpathy guidelines. An always-cited reference, **not** a glob-routed convention
 
 - `tdd`: rule 1 = the planning step; rule 4 = the failing-test-first contract.
 - `diagnose`: rule 4 = the deterministic reproduction loop; rule 3 = one variable at a time.
-- `architecture`: rule 2 = the deletion test bias; report-then-apply respects rule 3.
 - `execute-issue`: builder subagents are bound by rule 3 (minimal diff) + rule 4 (acceptance
   criteria), not by a file-count rule.

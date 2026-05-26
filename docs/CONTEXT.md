@@ -24,7 +24,7 @@ that may be promoted up to a convention.
 _Avoid_: memory, retro
 
 **Reference** — a detail file loaded on demand by exactly one skill (or a `shared/` module cited by
-many). One level deep — references never chain.
+many). One level deep — no *deepening* chain, though lateral sibling cross-links are fine.
 _Avoid_: doc (ambiguous)
 
 **Pipeline** — the skill-chain graph (`${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`); the contract is the `Next:` footer on

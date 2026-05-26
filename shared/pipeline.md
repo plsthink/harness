@@ -17,7 +17,7 @@ think ─────┼─→ prd ──→ issues ──→ (triage) ──→
            │
 diagnose ──┴─→ architecture        (bug-fix loop; hands findings to architecture)
 architecture → tdd                 (implement a deepening)
-docs-review                        (manual sweep over PROJECT + CONTEXT + stances + conventions)
+docs-review                        (manual sweep over PROJECT + CONTEXT + stances + AGENTS + conventions)
 think                              (inline doc hygiene during any work session)
 caveman / zoom-out / new-skill / new-agent / onboard   (ad-hoc / meta / bootstrap)
 ```

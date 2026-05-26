@@ -27,7 +27,8 @@ only lean if each unit is. Hard rules:
   the tally and every copy go stale with no error). `check-refs` resolves links, not prose tallies,
   so nothing catches this but the rule.
 - **Own refs by relative path.** A skill cites its OWN bundled files relatively:
-  `[x.md](references/x.md)`. Only `shared/` files use the `${CLAUDE_PLUGIN_ROOT}` form.
+  `[x.md](references/x.md)`. Cross-product plugin resources (`shared/`, `conventions/`, `hooks/`)
+  use the `${CLAUDE_PLUGIN_ROOT}` form.
 
 ## Description budget
 

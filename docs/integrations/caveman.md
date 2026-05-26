@@ -5,8 +5,8 @@ Install: idea-only (mechanism re-authored, plugin not vendored)
 
 ## What we took
 - The **2-hook persistence mechanism** → owned thin caveman skill + 2 hooks:
-  - SessionStart hook (`src/hooks/caveman-activate.js`) injects the ruleset once.
-  - UserPromptSubmit hook (`src/hooks/caveman-mode-tracker.js`) re-injects the active-mode
+  - SessionStart hook (`${CLAUDE_PLUGIN_ROOT}/hooks/caveman-activate.js`) injects the ruleset once.
+  - UserPromptSubmit hook (`${CLAUDE_PLUGIN_ROOT}/hooks/caveman-mode-tracker.js`) re-injects the active-mode
     reminder every turn → deterministic, no drift (Matt's hookless SKILL drifts on long sessions).
 - The **cavecrew agent pattern** → owned `agents/` (investigator/builder/reviewer), terse
   structured output, **no caveman-compression persona**.

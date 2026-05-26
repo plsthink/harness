@@ -22,7 +22,9 @@ goal-driven verification).
    **Get user approval on the plan** when interactive. Running AFK inside `execute-issue`, the
    `ready-for-agent` issue's acceptance criteria *are* the approved plan (the gate is upstream —
    stance: execute-issue-afk-autonomy); don't block on an absent user. Respect stances in the
-   touched area.
+   touched area, and consult the conventions INDEX before editing — load convention docs matching
+   the files you'll touch (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` global + project
+   `docs/conventions/INDEX.md`; project wins), as `builder` does.
 2. **Tracer bullet.** Write ONE test for ONE behavior → it fails (RED) → minimal code → passes
    (GREEN). Proves the path end-to-end. **RED must be observed, not assumed:** confirm the new test
    actually ran and failed for the behavior — coding-discipline rule 4's observed-verification bar

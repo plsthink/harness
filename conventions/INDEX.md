@@ -9,7 +9,10 @@ The `builder`/`tdd`/editing procedures consult this first. Pure filesystem contr
 and load additively (project wins on conflict).
 
 **Starts empty (lean-first).** Add an entry the first time you catch opus doing a thing wrong;
-each convention doc gets a stable rule-id (for cross-boundary `overrides:` markers). This index is
+scaffold each convention doc from `${CLAUDE_PLUGIN_ROOT}/templates/convention.md` via
+`${CLAUDE_PLUGIN_ROOT}/templates/scaffold.sh`, saved beside this
+index as `<rule-id>.md` (the Load cell lists that rule-id; consult resolves it to the sibling file)
+— it gets a stable rule-id (for cross-boundary `overrides:` markers). This index is
 where "drive-the-model" knowledge compounds — curated, like learnings.
 
 | Matcher | Load (rule-ids) |

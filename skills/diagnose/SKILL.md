@@ -30,7 +30,9 @@ verification). Use the domain glossary for a clear model; respect stances in the
    `[DEBUG-xxxx]` for single-grep cleanup. Perf: measure a baseline first, then bisect.
 5. **Fix + regression test.** Write the regression test **before** the fix — **only if a correct
    seam exists** (exercises the real bug pattern at the call site). **No correct seam = that is the
-   finding** (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`); flag it. Then: failing test → fix →
+   finding** (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`); flag it. Before writing the fix,
+   consult the conventions INDEX (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` global + project
+   `docs/conventions/INDEX.md`; project wins), as `builder`/`tdd` do. Then: failing test → fix →
    passing → re-run the Phase-1 loop on the original scenario.
 6. **Cleanup + post-mortem.** Original no longer reproduces; regression test passes (or absent-seam
    documented); all `[DEBUG-]` removed; throwaways deleted; correct hypothesis stated in the

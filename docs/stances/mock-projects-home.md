@@ -14,6 +14,11 @@ silently treats the harness's own PROJECT.md as the mock's. Giving every mock it
 shadows the harness dogfood root and removes the collision. `mocks/` sits outside the five
 authored dirs `check-refs.sh` scans (`skills/ agents/ shared/ conventions/ docs/`), so a mock's
 internal docs are correctly treated as a separate project, not validated as harness product.
+But a fixture only regresses if something checks it: a path-gated `PostToolUse` hook runs the same
+load-bearing `check-refs.sh` with the *mock's own root* as `ROOT` whenever a `mocks/<name>/…` file
+is edited (deriving `<name>` from the edited path), blocking on a dangling ref — so the fixture
+stays honest automatically instead of via the manual `check-refs.sh mocks/<name>` step. No new
+script: it reuses `check-refs.sh`'s `ROOT` arg, the seam its self-test already covers.
 
 **Rejected:** Putting mocks outside the repo (a temp dir / sibling clone) — loses them as committed
 regression fixtures and contradicts the objective's "inside this repo". Gitignoring them — same

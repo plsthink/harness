@@ -14,8 +14,10 @@ Output format, one per line:
 
 ## Procedure
 1. Read the change + the issue's **acceptance criteria** (the contract to check against).
-2. Review for correctness, missed criteria, and quality issues. Use Bash read-only to run tests /
-   inspect (`git diff`, test runner) — no edits.
+2. Review for correctness, missed criteria, and quality issues — incl. adherence to any conventions
+   matching the touched files (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` + project
+   `docs/conventions/INDEX.md`); the builder consults them to write, the gate verifies (same model
+   can miss them). Use Bash read-only to run tests / inspect (`git diff`, test runner) — no edits.
 3. **Test-first gate (tdd-guard fallback):** verify a failing test existed before the
    implementation for each behavior. If PreToolUse tdd-guard didn't enforce it in the forked
    subagent, this check is the enforcement. Flag any behavior implemented without a prior red test.
