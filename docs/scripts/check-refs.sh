@@ -8,8 +8,10 @@
 # and flags unfilled scaffold residue:
 #   - `{{UPPER_SNAKE}}` template tokens left in a committed (non-template) file
 # Covers the full authored surface: the product dirs (skills/, agents/, shared/, conventions/),
-# the dogfood root (docs/ — where dangling-ref drift historically recurred), and the root
-# entrypoints (CLAUDE.md, README.md). Excludes generated/orchestrator paths and templates/
+# the dogfood root (docs/ — where dangling-ref drift historically recurred), the monorepo
+# per-package fan-out (packages/<pkg>/docs/ — the layout shared/context-doc.md
+# defines), and the root entrypoints (CLAUDE.md, README.md). Excludes generated/orchestrator
+# paths and templates/
 # (its {{TOKENS}}/<...> are placeholders, never real targets).
 # Harness-repo dev tooling (see stance: repo-dev-tooling-home), not shipped to target projects.
 # Exit 0 = all references resolve; exit 1 = at least one dangling reference.
@@ -21,12 +23,17 @@ ROOT="$(cd "$ROOT" && pwd)"
 cd "$ROOT"
 
 # Scan only the authored dirs/files that exist under ROOT (fixtures may carry a subset).
+# `packages/*/docs` covers a monorepo's per-package glossaries; the glob stays literal (and is
+# skipped by the -d guard) when there is no packages/ tree, so single-context roots are unaffected.
 scan_dirs=()
-for d in skills agents shared conventions docs; do [ -d "$d" ] && scan_dirs+=("$d"); done
+for d in skills agents shared conventions docs packages/*/docs; do [ -d "$d" ] && scan_dirs+=("$d"); done
 scan_files=()
 for f in CLAUDE.md README.md; do [ -f "$f" ] && scan_files+=("$f"); done
+# Nothing authored to check (e.g. a code-only or mid-construction mock fixture) is clean, not a
+# dangling ref — exit 0 with a notice so the blocking PostToolUse hook does not reject the first
+# file written into a new mock before its docs/ skeleton exists.
 [ "${#scan_dirs[@]}" -gt 0 ] || [ "${#scan_files[@]}" -gt 0 ] \
-  || { echo "check-refs: no authored markdown under $ROOT" >&2; exit 1; }
+  || { echo "check-refs: no authored markdown under $ROOT (nothing to check)" >&2; exit 0; }
 
 fail=0
 report() { printf '%s\n' "$1" >&2; fail=1; }

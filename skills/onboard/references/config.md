@@ -16,8 +16,8 @@ tracker already uses different label names, map them so `triage` applies the rig
 creating duplicates.
 
 ## C — Domain context layout
-- **Single-context** — one `docs/CONTEXT.md` + `docs/stances/` at root. Most repos.
-- **Multi-context** — `docs/CONTEXT-MAP.md` routing to per-package `docs/CONTEXT.md` (monorepo).
+- **Single** — one `docs/CONTEXT.md` + `docs/stances/` at root. Most repos.
+- **Multi-package** — `docs/CONTEXT-MAP.md` routing to per-package `packages/<pkg>/docs/CONTEXT.md` (monorepo).
 Work substrate stays at **repo root** either way; only domain docs fan out.
 
 ## What gets written

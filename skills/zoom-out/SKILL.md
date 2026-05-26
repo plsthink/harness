@@ -16,10 +16,11 @@ vocabulary (`docs/CONTEXT.md`).
 
 1. Identify the area of code in question.
 2. Go up one abstraction layer.
-3. Map the relevant modules and their callers, using the domain glossary vocabulary (and the
-   deep-modules vocab `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` for interface/seam framing).
+3. Map the relevant modules and their callers, using the domain glossary vocabulary (multi-package:
+   the per-package `packages/<pkg>/docs/CONTEXT.md` for the area via the `CONTEXT-MAP.md` spine, plus
+   root) and the deep-modules vocab `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` for interface/seam framing.
 
 ## Pipeline
-- Reads:  code; `docs/CONTEXT.md`
+- Reads:  code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi)
 - Writes: (nothing — produces a map for the user)
 - Next:   architecture (if the map reveals friction worth deepening)

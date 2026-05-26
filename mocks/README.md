@@ -16,6 +16,12 @@ code. See stance: `docs/stances/mock-projects-home.md`.
 - **todo-cli/** — dependency-free single-file Nodejs todo CLI (`todo.js` + own `docs/` skeleton).
   Use it to drive think/prd/issues/tdd/diagnose; to re-test the `onboard` skill, copy it to a
   throwaway dir and strip its `docs/` first.
+- **slug-mono/** — dependency-free npm-workspaces monorepo (`packages/core` + `packages/cli`). The
+  **multi-package** counterpart to todo-cli: it carries a root glossary, a `docs/CONTEXT-MAP.md`
+  spine, and per-package `packages/<pkg>/docs/CONTEXT.md` glossaries, so it exercises the
+  multi-package docs layout (and `check-refs.sh`'s `packages/*/docs` coverage) that a
+  single mock cannot. Carries a completed `docs/work/max-length/` item (Status: done) whose slice cut
+  both packages, dogfooding the prd/issues/execute-issue pipeline against a monorepo end to end.
 
 ## Caveat
 A mock has no `git remote` of its own (it lives in the harness repo), so `onboard` step 1's

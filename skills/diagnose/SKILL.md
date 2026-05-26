@@ -43,6 +43,6 @@ Read/append this skill's learnings in `docs/work/learnings/diagnose.md` per the 
 append the step-6 "what would have prevented this" insight when it is reusable beyond this bug.
 
 ## Pipeline
-- Reads:  the bug report; code; `docs/CONTEXT.md`, `docs/stances/*`; `docs/work/learnings/diagnose.md`
+- Reads:  the bug report; code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/*`; `docs/work/learnings/diagnose.md`
 - Writes: a regression test + fix; a post-mortem note in the commit; `docs/work/learnings/diagnose.md`
 - Next:   architecture (if the root cause is architectural) | tdd (if the fix grows into a feature)

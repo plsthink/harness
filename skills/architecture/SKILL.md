@@ -16,7 +16,9 @@ deletion test in [LANGUAGE.md](references/LANGUAGE.md). Use these terms exactly 
 
 ## Procedure
 
-1. **Explore.** Read the domain glossary + stances in the area first (don't re-litigate them). Use
+1. **Explore.** Read the domain glossary + stances in the area first (don't re-litigate them;
+   multi-package: the per-package `packages/<pkg>/docs/CONTEXT.md` for the area via the
+   `CONTEXT-MAP.md` spine, plus root). Use
    the `investigator` agent (or `Explore`) to walk the codebase noting **friction**: concept
    understanding scattered across many small modules, shallow modules, pure functions extracted
    only for testability while real bugs hide in how they're called, coupling leaking across seams,
@@ -30,11 +32,13 @@ deletion test in [LANGUAGE.md](references/LANGUAGE.md). Use these terms exactly 
    sits behind the seam, surviving tests). Categorise dependencies + testing strategy via
    [DEEPENING.md](references/DEEPENING.md); design the interface twice via parallel subagents per
    [INTERFACE-DESIGN.md](references/INTERFACE-DESIGN.md). **Inline doc side-effects:** new concept →
-   add to `CONTEXT.md`; fuzzy term sharpened → update it; user rejects with a load-bearing reason →
+   add to `CONTEXT.md` (multi-package: route a package-specific concept to the per-package
+   `packages/<pkg>/docs/CONTEXT.md` the `CONTEXT-MAP.md` spine points to, project-wide to root);
+   fuzzy term sharpened → update it; user rejects with a load-bearing reason →
    offer a stance so future reviews don't re-suggest it (`${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`,
    AND-of-three gate). A candidate contradicting a stance → flag only when friction warrants reopening.
 
 ## Pipeline
-- Reads:  code; `docs/CONTEXT.md`, `docs/stances/*`; diagnose findings (if handed off)
-- Writes: HTML report (temp dir); inline `docs/CONTEXT.md` / `docs/stances/*` edits
+- Reads:  code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/*`; diagnose findings (if handed off)
+- Writes: HTML report (temp dir); inline `docs/CONTEXT.md` (+ per-package `packages/<pkg>/docs/CONTEXT.md` if multi) / `docs/stances/*` edits
 - Next:   tdd (implement the approved deepening)

@@ -1,6 +1,6 @@
 # Stance format (ex-ADR)
 
-Cited by: `think`, `architecture`, `docs-review` (the skills that record a stance + the periodic doc sweep that checks docs against this spec; consumers cite the project's `docs/stances/*`, not this format spec). A stance is a decision
+Cited by: `think`, `architecture`, `onboard`, `docs-review` (think/architecture record a stance, onboard reshapes migrated ADRs into this format, docs-review is the periodic sweep that checks docs against this spec; consumers cite the project's `docs/stances/*`, not this format spec). A stance is a decision
 recorded as **current truth**, not a log. Renamed from ADR; the renumber/supersede machinery is
 gone (there are no numbers and nothing is superseded).
 
@@ -12,6 +12,15 @@ gone (there are no numbers and nothing is superseded).
 - **Rationale lives in the file** — a stance without its why is just an order.
 - **History lives in git** (`git log -p` / `git blame` on the slug file) — no in-file changelog
   (that re-introduces the supersede-chain cruft we're escaping).
+
+Field layout (`${CLAUDE_PLUGIN_ROOT}/templates/docs/stance.md` scaffolds it):
+```
+# <stance title>
+
+**Stance:** <positive declarative truth>
+**Why:** <rationale>
+**Rejected:** <alternative> — <consequence>   (durable reversals only; optional)
+```
 
 ## Durable reversals
 

@@ -20,7 +20,7 @@ its own beyond the domain docs it edits.
    answer**. Wait for feedback before the next question.
 2. **Explore instead of asking** when a question is answerable from the codebase — read the code,
    don't ask the user.
-3. **Detect domain docs.** Look for `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi-context),
+3. **Detect domain docs.** Look for `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi-package),
    `docs/PROJECT.md`, `docs/stances/`. If none exist, stay in plain interview mode.
 4. **If docs exist → doc-surgery inline.** When a term, claim, or decision surfaces, apply
    [doc-surgery.md](references/doc-surgery.md): challenge against the glossary, sharpen fuzzy
@@ -34,6 +34,6 @@ its own beyond the domain docs it edits.
    avoid a mistake?" No → it stays in the conversation/PRD, not the docs.
 
 ## Pipeline
-- Reads:  conversation; `docs/PROJECT.md`, `docs/CONTEXT.md`, `docs/stances/<slug>.md`; code
-- Writes: `docs/CONTEXT.md`, `docs/PROJECT.md`, `docs/stances/<slug>.md` (inline, on resolution)
+- Reads:  conversation; `docs/PROJECT.md`, `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/<slug>.md`; code
+- Writes: `docs/CONTEXT.md` (+ per-package `packages/<pkg>/docs/CONTEXT.md` if multi), `docs/PROJECT.md`, `docs/stances/<slug>.md` (inline, on resolution)
 - Next:   prd (synthesize the agreed design) | architecture (if a deepening surfaced)

@@ -14,8 +14,9 @@ interview** — that was `think`'s job; synthesize what you already know.
 ## Procedure
 
 1. **Explore the repo** to ground the current state (if not already done). Use the project's
-   **domain glossary vocabulary** throughout (`docs/CONTEXT.md`), and
-   respect stances in the area you're touching (`docs/stances/*`).
+   **domain glossary vocabulary** throughout (`docs/CONTEXT.md`; for multi-package, also the
+   per-package `packages/<pkg>/docs/CONTEXT.md` for the packages in scope via the `CONTEXT-MAP.md`
+   spine), and respect stances in the area you're touching (`docs/stances/*`).
 2. **Sketch the modules** to build/modify. Hunt **deep modules** — small interface, deep
    implementation, testable in isolation — using
    `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` (incl. the deletion test). **Confirm with the
@@ -33,6 +34,6 @@ snippet that encodes a decision more precisely than prose (state machine / reduc
 shape) — inline the decision-rich bit and note it came from a prototype.
 
 ## Pipeline
-- Reads:  conversation; code; `docs/CONTEXT.md`, `docs/stances/*`; prototype output (if any)
+- Reads:  conversation; code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/*`; prototype output (if any)
 - Writes: `docs/work/<feature>/PRD.md`
 - Next:   issues (break the PRD into tracer-bullet slices)

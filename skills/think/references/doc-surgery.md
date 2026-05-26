@@ -18,7 +18,7 @@ Loaded by `think` step 4 when domain docs exist and a term/claim/decision surfac
 
 ## Placement rules
 
-- Vocabulary → `CONTEXT.md` glossary (format: `${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`). No implementation detail.
+- Vocabulary → `CONTEXT.md` glossary (format: `${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`). No implementation detail. **Multi-package:** route a package-specific term to the per-package `packages/<pkg>/docs/CONTEXT.md` the `CONTEXT-MAP.md` spine points to, project-wide terms to root (scope split per that format spec).
 - Vision / hard constraints / integrations → `PROJECT.md` (format: `${CLAUDE_PLUGIN_ROOT}/shared/project-doc.md`).
 - A hard-to-reverse AND surprising AND traded-off decision → a stance (format:
   `${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`). Durable reversal → a `Rejected:` line, not a new doc.

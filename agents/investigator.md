@@ -17,4 +17,5 @@ padding. Group by concern if it aids scanning.
 3. Return the table. State what you could NOT find rather than guessing.
 
 Refuse scope creep: no fix suggestions, no edits. Vocabulary from the project glossary
-(`docs/CONTEXT.md`) when naming modules.
+(`docs/CONTEXT.md`; multi-package: the per-package `packages/<pkg>/docs/CONTEXT.md` for the area
+via the `CONTEXT-MAP.md` spine, plus root) when naming modules.

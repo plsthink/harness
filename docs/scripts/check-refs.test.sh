@@ -122,5 +122,21 @@ printf '<title>Architecture review — {{repo name}}</title>\n' > "$root/skills/
 expect "lowercase {{repo name}} example not flagged" 0 "$root"
 rm -rf "$root"
 
+# 14) A dangling cite in a monorepo per-package glossary (packages/<pkg>/docs/) is caught —
+#     the per-package fan-out shared/context-doc.md defines, scanned alongside the root docs/.
+root="$(mkfixture)"
+mkdir -p "$root/packages/core/docs"
+printf 'see [x](missing.md)\n' > "$root/packages/core/docs/CONTEXT.md"
+expect "dangling per-package docs/ cite caught" 1 "$root"
+rm -rf "$root"
+
+# 15) A root with no authored markdown (a code-only / mid-construction mock) is clean (exit 0),
+#     not a dangling-ref failure — so the blocking mock hook does not reject a new mock's first
+#     code file written before its docs/ skeleton exists.
+root="$(mktemp -d)"
+: > "$root/index.js"
+expect "no authored markdown is clean" 0 "$root"
+rm -rf "$root"
+
 if [ "$fails" -ne 0 ]; then echo "check-refs.test: FAILURES" >&2; exit 1; fi
 echo "check-refs.test: all cases pass"

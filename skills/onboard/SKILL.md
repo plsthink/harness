@@ -26,12 +26,14 @@ so don't grill "what counts as CONTEXT" — just settle 3 config choices + seed 
    - **Labels** — map the canonical triage roles to the tracker's actual labels
      (`${CLAUDE_PLUGIN_ROOT}/shared/triage-labels.md`).
    - **Context** — single vs multi-package (rides `CONTEXT-MAP.md`).
-3. **Confirm a draft**, then **write** (scaffold from `templates/`):
+3. **Confirm a draft**, then **write** (scaffold from `templates/` via `templates/scaffold.sh`):
    - `docs/AGENTS.md` (from `templates/docs/AGENTS.md`) — navigation protocol + the 3 choices.
    - thin `CLAUDE.md` → `docs/AGENTS.md` pointer (never create AGENTS.md root-file if CLAUDE.md
      exists, or vice versa — edit the one present; if neither, ask which).
-   - seed `docs/` skeleton: PROJECT/CONTEXT (+ CONTEXT-MAP if multi) + empty
-     `docs/conventions/INDEX.md` (delta over harness globals, starts empty).
+   - seed `docs/` skeleton: PROJECT/CONTEXT + empty `docs/conventions/INDEX.md` (delta over
+     harness globals, starts empty). **If multi:** also CONTEXT-MAP + a per-package
+     `packages/<pkg>/docs/CONTEXT.md` glossary stub for each package the spine routes to (so the
+     spine never points at a missing file; `think` fills the terms later, as it does for root).
    - **Strip the template scaffolding** from every written file: drop the `<!-- … -->` authoring
      hints and resolve conditionals (e.g. the multi-package line in `AGENTS.md`) — the output is
      the project's own doc, not a half-filled template.
@@ -40,7 +42,7 @@ so don't grill "what counts as CONTEXT" — just settle 3 config choices + seed 
    - **Per-package glossaries** go under `packages/<pkg>/docs/CONTEXT.md`, not `packages/<pkg>/CONTEXT.md`
      (`${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`); repoint `CONTEXT-MAP.md` after moving.
    - **ADR → stance** in *doc prose*: rewrite `docs/adr/NNNN-*.md` → `docs/stances/<slug>.md`
-     (Stance/Why/Rejected, no numbers/Status/supersede) and flip the word `ADR`→`stance` across
+     (`${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`; drop the ADR numbers/Status/supersede) and flip the word `ADR`→`stance` across
      `PROJECT`/`CONTEXT` (and any domain-doc) prose. Drop superseded ADRs to git history.
    - **Source-comment `ADR-NNNN` sweep** (often ~hundreds across many files): flag it as a **tracked
      follow-up** in `docs/stances/README.md` (transitional bridge), don't silently leave the bridge
@@ -49,6 +51,6 @@ so don't grill "what counts as CONTEXT" — just settle 3 config choices + seed 
 5. **Done:** tell the user which skills now read these, and that they can edit `docs/*` directly.
 
 ## Pipeline
-- Reads:  the repo; `templates/`; `${CLAUDE_PLUGIN_ROOT}/shared/{triage-labels,project-doc,context-doc}.md`
-- Writes: `docs/AGENTS.md`, thin `CLAUDE.md`, `docs/{PROJECT,CONTEXT}.md`, `docs/conventions/INDEX.md`
+- Reads:  the repo; `templates/`; `${CLAUDE_PLUGIN_ROOT}/shared/{triage-labels,project-doc,context-doc,stances-doc}.md`
+- Writes: `docs/AGENTS.md`, thin `CLAUDE.md`, `docs/{PROJECT,CONTEXT}.md` (+ `CONTEXT-MAP.md` and per-package `packages/<pkg>/docs/CONTEXT.md` if multi), `docs/conventions/INDEX.md`
 - Next:   think (start designing) | prd (if a plan already exists)

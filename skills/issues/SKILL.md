@@ -27,7 +27,7 @@ end-to-end (not a horizontal layer slice); many thin > few thick. Never edits th
 5. **Run the "thought-enough" checklist** (`${CLAUDE_PLUGIN_ROOT}/shared/triage-labels.md`) before
    stamping `ready-for-agent` — the upstream AFK gate.
 6. **Publish in dependency order** (blockers first, so "Blocked by" can cite real ids). Scaffold
-   each from `templates/work/issue.md`; fill What-to-build / Acceptance criteria / Blocked-by.
+   each from `templates/work/issue.md` via `templates/scaffold.sh`; fill What-to-build / Acceptance criteria / Blocked-by.
    Layout + Status/Type semantics: `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`.
 
 **No file paths/code snippets** (same prototype-snippet exception as `prd`). Read this skill's

@@ -13,14 +13,16 @@ Output format, one per line:
 `path:line: <severity>: <problem>. <fix>.`  — severity ∈ {blocker, major, minor}.
 
 ## Procedure
-1. Read the change + the issue's **acceptance criteria** (the contract to check against).
+1. Read the change + its **acceptance criteria** if it has an issue (the contract to check
+   against); a standalone diff/file with no issue is reviewed for correctness/quality alone.
 2. Review for correctness, missed criteria, and quality issues — incl. adherence to any conventions
    matching the touched files (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` + project
    `docs/conventions/INDEX.md`); the builder consults them to write, the gate verifies (same model
    can miss them). Use Bash read-only to run tests / inspect (`git diff`, test runner) — no edits.
-3. **Test-first gate (tdd-guard fallback):** verify a failing test existed before the
-   implementation for each behavior. If PreToolUse tdd-guard didn't enforce it in the forked
-   subagent, this check is the enforcement. Flag any behavior implemented without a prior red test.
-   When you re-run the suite (step 2), confirm it **actually executed** the new tests — a "0 tests"
-   green (runner discovered no test file) is a false pass, not a green; flag it as a blocker.
+3. **Test-first gate (tdd-guard fallback)** — for a test-first-built change (e.g. inside
+   `execute-issue`): verify a failing test existed before the implementation for each behavior. If
+   PreToolUse tdd-guard didn't enforce it in the forked subagent, this check is the enforcement.
+   Flag any behavior implemented without a prior red test. Whenever you re-run the suite (step 2),
+   confirm it **actually executed** the new tests — a "0 tests" green (runner discovered no test
+   file) is a false pass, not a green; flag it as a blocker.
 4. Emit findings. Empty output = no findings (don't pad with praise).

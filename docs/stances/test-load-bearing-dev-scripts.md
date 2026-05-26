@@ -22,8 +22,14 @@ The trigger is *blocking*: a **non-blocking advisory** hook (e.g. the `SessionSt
 regression there at worst drops one advisory line back to the manual status quo, no asymmetric blast
 radius — so it earns no pinned test until it gains teeth.
 
-**Rejected:** Speculative linting of authoring-standard invariants (footer/size) — deferred until
-that drift recurs (lean-first); testing existing load-bearing tooling is the uncontradicted concern.
+**Rejected:** Speculative linting of authoring-standard invariants — the footer/size soft target,
+and the `Cited by:` header (mechanical and genuinely buildable, unlike the semantic case below, yet
+on the same gate). Deferred until that drift *recurs* (lean-first); testing existing load-bearing
+tooling is the uncontradicted concern. The Cited-by lint is the most-retempted (re-derived nearly
+every iteration): its lone near-miss was a brace-set blind spot in the *manual* sweep — a brace-only
+citer like `docs-review` carries no literal `shared/<doc>` substring — patched by the brace-aware
+note in `authoring-standard.md`, a methodology artifact, not recurring drift, so the gate stays
+untripped. Control = the brace-aware manual citer sweep, not a script.
 
 **Rejected (stronger ground):** A *duplicated-fact* checker — flagging a restated count, checklist,
 or canonical list (the `authoring-standard.md` "cite a canonical fact, never restate it" rule). This

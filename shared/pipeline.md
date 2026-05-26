@@ -1,7 +1,7 @@
 # Pipeline — the skill-chain graph
 
 Cited by: `handoff`, `new-skill`. **Product, not a
-dev-doc** — `${CLAUDE_PLUGIN_ROOT}`-resolvable so a `Next:` pointer / `onboard` / `handoff` can
+dev-doc** — `${CLAUDE_PLUGIN_ROOT}`-resolvable so a `Next:` pointer or `handoff` can
 read it from inside any target project. Derivable from the per-`SKILL.md` footers; hand-maintained
 now, add a regen script only if drift recurs (lean-first).
 
