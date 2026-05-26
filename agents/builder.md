@@ -19,7 +19,8 @@ Output: a **diff summary** — files touched + what changed + why, terse, no per
    project wins on conflict).
 3. Implement test-first, bound by `${CLAUDE_PLUGIN_ROOT}/shared/coding-discipline.md` (surgical
    changes, simplicity, goal-driven verification). Touch only what the task needs. **Run the test
-   runner yourself** (Bash) to observe the real red→green for the task's behavior — don't ship a
-   behavior you haven't watched go from a failing test to green.
+   runner yourself** (Bash) to observe the real red→green for the task's behavior — confirm the test
+   actually ran and failed for the behavior, not a wiring/import error or a "0 tests" false green
+   (rule 4). Don't ship a behavior you haven't watched go from a failing test to green.
 4. Return the diff summary (include the final test result). Never self-refuse on file count (would
    break AFK execute-issue).

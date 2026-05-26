@@ -5,8 +5,8 @@ description: Turn the current conversation and codebase understanding into a PRD
 
 # prd
 
-Synthesize conversation + codebase understanding → a PRD at `docs/work/<feature>/PRD.md`, published
-`ready-for-agent`. **Do not interview** — that was `think`'s job; synthesize what you already know.
+Synthesize conversation + codebase understanding → a PRD at `docs/work/<feature>/PRD.md`. **Do not
+interview** — that was `think`'s job; synthesize what you already know.
 
 ## When to fire
 - User wants a PRD from the current context, or a `think` session has converged.
@@ -24,8 +24,9 @@ Synthesize conversation + codebase understanding → a PRD at `docs/work/<featur
    the closed sections: Problem, Solution, long User Stories (`As an <actor>, I want <feature>, so
    that <benefit>` — extensive), Implementation Decisions, Testing Decisions, Out of Scope, Notes.
    See [prd-content.md](references/prd-content.md) for what each section must/must-not hold.
-4. **Publish** to `docs/work/<feature>/PRD.md` and stamp `ready-for-agent` — no extra triage
-   (`${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`).
+4. **Publish** the PRD to `docs/work/<feature>/PRD.md` (`${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`).
+   A PRD carries no `Status:` (that's a per-issue field); a converged design lets `issues` stamp its
+   slices `ready-for-agent` without extra triage.
 
 **No file paths or code snippets** in the PRD (they go stale). Exception: a prototype-produced
 snippet that encodes a decision more precisely than prose (state machine / reducer / schema / type
@@ -33,5 +34,5 @@ shape) — inline the decision-rich bit and note it came from a prototype.
 
 ## Pipeline
 - Reads:  conversation; code; `docs/CONTEXT.md`, `docs/stances/*`; prototype output (if any)
-- Writes: `docs/work/<feature>/PRD.md` (Status: ready-for-agent)
+- Writes: `docs/work/<feature>/PRD.md`
 - Next:   issues (break the PRD into tracer-bullet slices)

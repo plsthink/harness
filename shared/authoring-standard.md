@@ -7,7 +7,8 @@ only lean if each unit is. Hard rules:
 ## Skills
 
 - **Thin entry file.** `SKILL.md` stays short — **soft target ~100 lines.** Holds only: the
-  `description`, when-to-fire triggers, and the *procedure* (ordered steps). Nothing else.
+  `description`, when-to-fire triggers, the *procedure* (ordered steps), and the `Pipeline`
+  footer (below). Nothing else.
 - **Detail lives in `references/`.** Vocabulary, formats, templates, examples, long rationale,
   decision tables → bundled reference files, **loaded only when the step that needs them runs**
   (e.g. `tdd` loads `references/mocking.md` only when a mocking question arises). The entry file
@@ -20,6 +21,11 @@ only lean if each unit is. Hard rules:
   executable in `scripts/`, not prose the model re-derives each run.
 - **Shared over local.** Cross-cutting conventions live once in `shared/` and are referenced by
   path (`${CLAUDE_PLUGIN_ROOT}/shared/...`); never copied into a skill.
+- **Cite a canonical fact, never restate it.** A count ("six state roles"), a checklist, or a
+  canonical list has one home; everywhere else — including a doc's own header — points to it, never
+  hardcodes a copy. A restated fact drifts silently when its source grows (the list gains an item;
+  the tally and every copy go stale with no error). `check-refs` resolves links, not prose tallies,
+  so nothing catches this but the rule.
 - **Own refs by relative path.** A skill cites its OWN bundled files relatively:
   `[x.md](references/x.md)`. Only `shared/` files use the `${CLAUDE_PLUGIN_ROOT}` form.
 
@@ -39,6 +45,11 @@ Every `SKILL.md` ends with the standard block (scaffold from `templates/skill/SK
 - Writes: <files / docs/work state it produces>
 - Next:   <skill name(s) that typically follow>
 ```
+`Reads`/`Writes` scope to inter-stage **project state** — `docs/work` artifacts, `docs/`
+domain docs, code, conversation: what flows between pipeline stages. They do *not* enumerate
+the cross-cutting `shared/` conventions a skill is bound by, nor its own `references/`/`scripts/`
+(internal machinery, loaded on demand) — listing those would repeat the same boilerplate in
+every footer and is not a footer omission.
 
 ## Shared modules
 
@@ -48,6 +59,9 @@ Every `SKILL.md` ends with the standard block (scaffold from `templates/skill/SK
   reverse-pointer for impact analysis — when you edit a shared doc, it names who to re-check.
 - **Keep it true.** The list must match the actual citers across both `skills/` and `agents/`
   (`grep -rl` the doc path); a skill that stops citing the doc drops off, a new citer is added.
+  **Count brace-set cites:** a `shared/{a,b,c}.md` reference cites *each* member, but a literal
+  `grep -rl "shared/a"` misses it (the string is `shared/{a,...`) — expand the set when deriving
+  citers, or a brace-only citer (e.g. `docs-review`) silently drops from every header.
   Derivable, so hand-maintained now — add a checker only if accuracy drift recurs (lean-first).
 
 ## Agents
@@ -61,6 +75,7 @@ Every `SKILL.md` ends with the standard block (scaffold from `templates/skill/SK
 
 ## Enforcement
 
-The ~100-line target is a **soft target, not a lint** (lean-first). `reviewer` + `docs-review`
-flag a fat `SKILL.md` as a finding. No lint script until fat-file drift actually recurs. `new-skill`
-/`new-agent` scaffold the lean shape from `templates/` so thin-by-default is the starting point.
+The ~100-line target is a **soft target, not a lint** (lean-first). `reviewer` flags a fat
+`SKILL.md` under review as a finding (`docs-review` sweeps domain docs + conventions, not the skill
+instruction surface). No lint script until fat-file drift actually recurs. `new-skill`/`new-agent`
+scaffold the lean shape from `templates/` so thin-by-default is the starting point.

@@ -9,8 +9,8 @@ on-the-fly recruiter, no persona-specialized expert team.
 agents-that-write-agents loop (bloat); an expert team is the grand engine; persona
 specialization adds little on opus 4.7 and most "experts" already exist as skills. The
 specialization actually wanted (global good-practice + per-project rules + un-learnable knowledge,
-scoped by file/task) is delivered by the conventions layer, which **composes additively** (a
-`.tsx` edit loads react + typescript + project rules at once) where a persona can't.
+scoped by file/task) is delivered by the conventions layer, which composes additively where a
+persona can't (see stance: conventions-not-personas).
 
 **Rejected:** prd-lead/architect/qa/ts-expert team + recruiter + inter-agent messaging — caused
 the rejected agents-that-write-agents loop and the grand engine; conventions deliver the need.

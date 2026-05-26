@@ -1,6 +1,6 @@
 # {{NN}} — {{SLUG}}
 
-Status: {{STATUS}}   <!-- needs-triage|needs-info|ready-for-agent|ready-for-human|wontfix|done -->
+Status: {{STATUS}}   <!-- see triage-labels.md state roles -->
 Type: {{TYPE}}       <!-- bug|enhancement -->
 
 ## What to build

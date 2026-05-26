@@ -36,7 +36,11 @@ verification). Use the domain glossary for a clear model; respect stances in the
    documented); all `[DEBUG-]` removed; throwaways deleted; correct hypothesis stated in the
    commit. Then ask **what would have prevented this** — if architectural, hand to `architecture`.
 
+Read/append this skill's learnings in `docs/work/learnings/diagnose.md` per the convention
+(`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`) — read prior post-mortems before hypothesising, and
+append the step-6 "what would have prevented this" insight when it is reusable beyond this bug.
+
 ## Pipeline
-- Reads:  the bug report; code; `docs/CONTEXT.md`, `docs/stances/*`
-- Writes: a regression test + fix; a post-mortem note in the commit
+- Reads:  the bug report; code; `docs/CONTEXT.md`, `docs/stances/*`; `docs/work/learnings/diagnose.md`
+- Writes: a regression test + fix; a post-mortem note in the commit; `docs/work/learnings/diagnose.md`
 - Next:   architecture (if the root cause is architectural) | tdd (if the fix grows into a feature)

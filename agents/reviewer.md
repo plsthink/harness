@@ -19,4 +19,6 @@ Output format, one per line:
 3. **Test-first gate (tdd-guard fallback):** verify a failing test existed before the
    implementation for each behavior. If PreToolUse tdd-guard didn't enforce it in the forked
    subagent, this check is the enforcement. Flag any behavior implemented without a prior red test.
+   When you re-run the suite (step 2), confirm it **actually executed** the new tests — a "0 tests"
+   green (runner discovered no test file) is a false pass, not a green; flag it as a blocker.
 4. Emit findings. Empty output = no findings (don't pad with praise).

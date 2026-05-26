@@ -12,7 +12,10 @@ karpathy guidelines. An always-cited reference, **not** a glob-routed convention
 3. **Surgical changes.** Touch only what the task needs. Don't refactor adjacent code, rename
    unrelated things, or reformat untouched lines. Minimal, reviewable diffs.
 4. **Goal-driven verification.** Define what "done/correct" means as a checkable criterion
-   *before* building, then verify against it — don't declare success on vibes.
+   *before* building, then verify against it — don't declare success on vibes. A check counts only
+   if you *observed* it exercise the goal: a test that never ran (a "0 tests" green — no file
+   discovered) or that failed/passed for an unrelated reason (a wiring/import error, not the
+   behavior) is a false signal, not verification.
 
 ## Application
 

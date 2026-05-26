@@ -19,10 +19,15 @@ goal-driven verification).
    can't test everything). Design interfaces for testability and hunt deep modules
    (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`); for surface/return-vs-side-effect/DI guidance
    read [interface-design.md](references/interface-design.md). List behaviors (not impl steps).
-   **Get user approval on the plan.** Respect stances in the touched area.
+   **Get user approval on the plan** when interactive. Running AFK inside `execute-issue`, the
+   `ready-for-agent` issue's acceptance criteria *are* the approved plan (the gate is upstream —
+   stance: execute-issue-afk-autonomy); don't block on an absent user. Respect stances in the
+   touched area.
 2. **Tracer bullet.** Write ONE test for ONE behavior → it fails (RED) → minimal code → passes
-   (GREEN). Proves the path end-to-end. What makes a good vs bad test:
-   [tests.md](references/tests.md). Mocking questions (boundaries only):
+   (GREEN). Proves the path end-to-end. **RED must be observed, not assumed:** confirm the new test
+   actually ran and failed for the behavior — coding-discipline rule 4's observed-verification bar
+   (bound above), which names the failure modes to rule out. What makes a
+   good vs bad test: [tests.md](references/tests.md). Mocking questions (boundaries only):
    [mocking.md](references/mocking.md).
 3. **Incremental loop.** For each remaining behavior: RED (next test) → GREEN (minimal code).
    One test at a time; only enough code to pass; don't anticipate future tests. **Never write all
@@ -30,7 +35,7 @@ goal-driven verification).
 4. **Refactor only when green.** Look for [refactor candidates](references/refactoring.md)
    (duplication, shallow modules, feature envy). Run tests after each step. Never refactor while RED.
 
-Read this skill's learnings before, append after (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
+Read/append this skill's learnings in `docs/work/learnings/tdd.md` per the convention (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
 A missing seam needed for a test is itself a finding — report it, don't fabricate one.
 
 ## Pipeline

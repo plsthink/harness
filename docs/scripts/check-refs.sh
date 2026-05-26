@@ -5,6 +5,8 @@
 #   - plugin-root cites         ${CLAUDE_PLUGIN_ROOT}/shared/x.md  (incl. {a,b} brace sets)
 # and flags malformed cites that resolve but break the authoring-standard hard rule:
 #   - bare-backtick `shared/x.md` / `conventions/x.md` must use the ${CLAUDE_PLUGIN_ROOT}/ form
+# and flags unfilled scaffold residue:
+#   - `{{UPPER_SNAKE}}` template tokens left in a committed (non-template) file
 # Covers the full authored surface: the product dirs (skills/, agents/, shared/, conventions/),
 # the dogfood root (docs/ — where dangling-ref drift historically recurred), and the root
 # entrypoints (CLAUDE.md, README.md). Excludes generated/orchestrator paths and templates/
@@ -88,6 +90,15 @@ while IFS= read -r f; do
       is_placeholder "$bad" && continue
       report "$f:$lineno: bare shared/conventions cite -> $bad (use \${CLAUDE_PLUGIN_ROOT}/$bad)"
     done < <(grep -oE '`(shared|conventions)/[a-z0-9-]+\.md`' <<<"$line" | tr -d '`')
+
+    # 4) unfilled scaffold residue: templates/ is excluded from the scan, so a `{{UPPER_SNAKE}}`
+    #    token surviving in any scanned file is a scaffold.sh placeholder the invoking skill
+    #    forgot to fill (scaffold.sh's KEY=VALUE tokens are always upper-snake). Lowercase/spaced
+    #    `{{...}}` — e.g. a `{{repo name}}` example inside an HTML report block — is left alone.
+    while IFS= read -r tok; do
+      [ -n "$tok" ] || continue
+      report "$f:$lineno: unfilled scaffold token -> $tok (fill it in, or drop the placeholder row)"
+    done < <(grep -oE '\{\{[A-Z][A-Z0-9_]*\}\}' <<<"$line")
 
   done < "$f"
 done < <(

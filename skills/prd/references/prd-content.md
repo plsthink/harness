@@ -17,5 +17,5 @@ Loaded by `prd` step 3 when filling the template. What each section must / must-
 
 ## Scenario (verification)
 **Input:** a converged design in conversation. **Expected:** `docs/work/<feature>/PRD.md` with all
-sections filled in glossary vocab, an extensive user-story list, no file paths/code, Status
-`ready-for-agent`; the user was asked which modules to test before writing.
+sections filled in glossary vocab, an extensive user-story list, and no file paths/code (a PRD
+carries no `Status:` — that's a per-issue field); the user was asked which modules to test before writing.

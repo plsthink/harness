@@ -25,7 +25,7 @@ shared over local).
    Deterministic mechanics → `scripts/`.
 4. **Review against the checklist:** description has triggers; SKILL.md within the soft ~100-line
    target; no time-sensitive info; consistent terminology; references one level deep; Pipeline
-   footer present. Save a verification scenario note in `references/scenario.md`.
+   footer present.
 5. **Update the pipeline graph** if the new skill changes the chain
    (`${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`), and emit a conventions routing entry if relevant.
 

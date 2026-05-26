@@ -10,7 +10,10 @@ docs/work/<feature>/
   PRD.md
   issues/NN-slug.md      # NN = zero-padded order; slug = stable kebab id
 docs/work/learnings/<skill>.md
+.out-of-scope/<concept>.md   # repo-root rejected-enhancement KB (one file per concept, not per issue)
 ```
+`.out-of-scope/` is a **repo-root** dir (sibling of `docs/`, project-wide — not per-feature):
+`triage` writes/reads it on the `wontfix`-enhancement path (`triage-labels.md`, `OUT-OF-SCOPE.md`).
 Work substrate stays at **repo root even in a monorepo** (only domain docs fan out per-package).
 Committed to the target project's git — the substrate *is* the spec; worktrees inherit it.
 

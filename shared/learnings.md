@@ -1,6 +1,6 @@
 # Learnings — compounding convention
 
-Cited by: `tdd`, `issues`, `docs-review`. Lightweight, curated —
+Cited by: `tdd`, `issues`, `docs-review`, `diagnose`. Lightweight, curated —
 **not** an autonomous "skills that write skills" loop (rejected as bloat-prone). Learnings =
 intake; conventions = curated output.
 

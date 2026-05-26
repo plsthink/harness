@@ -32,6 +32,9 @@ so don't grill "what counts as CONTEXT" — just settle 3 config choices + seed 
      exists, or vice versa — edit the one present; if neither, ask which).
    - seed `docs/` skeleton: PROJECT/CONTEXT (+ CONTEXT-MAP if multi) + empty
      `docs/conventions/INDEX.md` (delta over harness globals, starts empty).
+   - **Strip the template scaffolding** from every written file: drop the `<!-- … -->` authoring
+     hints and resolve conditionals (e.g. the multi-package line in `AGENTS.md`) — the output is
+     the project's own doc, not a half-filled template.
 4. **Migrating a ADR-style project?** (only if step 1 found one — else skip.) Make these explicit,
    not silent:
    - **Per-package glossaries** go under `packages/<pkg>/docs/CONTEXT.md`, not `packages/<pkg>/CONTEXT.md`

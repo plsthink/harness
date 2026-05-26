@@ -108,5 +108,19 @@ printf 'rule: a bare `shared/<name>.md` must use the prefixed form\n' > "$root/s
 expect "shared/<name> placeholder not flagged" 0 "$root"
 rm -rf "$root"
 
+# 12) An unfilled `{{UPPER_SNAKE}}` scaffold token surviving in a committed file is caught —
+#     scaffold.sh leaves these for the invoking skill to fill; a forgotten one is residue.
+root="$(mkfixture)"
+mkdir -p "$root/docs/conventions"
+printf '| Matcher | Load |\n|---|---|\n| {{GLOB}} | {{DOCS}} |\n' > "$root/docs/conventions/INDEX.md"
+expect "unfilled scaffold token caught" 1 "$root"
+rm -rf "$root"
+
+# 13) Lowercase/spaced `{{...}}` (e.g. an HTML report example) is NOT scaffold residue.
+root="$(mkfixture)"
+printf '<title>Architecture review — {{repo name}}</title>\n' > "$root/skills/demo/SKILL.md"
+expect "lowercase {{repo name}} example not flagged" 0 "$root"
+rm -rf "$root"
+
 if [ "$fails" -ne 0 ]; then echo "check-refs.test: FAILURES" >&2; exit 1; fi
 echo "check-refs.test: all cases pass"

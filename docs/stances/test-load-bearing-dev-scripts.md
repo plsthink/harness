@@ -24,3 +24,12 @@ radius — so it earns no pinned test until it gains teeth.
 
 **Rejected:** Speculative linting of authoring-standard invariants (footer/size) — deferred until
 that drift recurs (lean-first); testing existing load-bearing tooling is the uncontradicted concern.
+
+**Rejected (stronger ground):** A *duplicated-fact* checker — flagging a restated count, checklist,
+or canonical list (the `authoring-standard.md` "cite a canonical fact, never restate it" rule). This
+drift class has *already* recurred and been hand-fixed repeatedly, so the usual "defer until it
+recurs" gate is spent — yet it still earns no checker, because the signal is **semantic, not
+mechanical**: "this prose restates a list defined elsewhere" is a judgment, unlike `check-refs`'s
+link resolution, so any linter would be guess-prone (false-positive on legitimate prose, blind on
+paraphrase). The chosen control is the encoded rule + a manual grep-the-bare-concept sweep, not a
+script. Recorded here so future iterations stop re-deriving the same answer.

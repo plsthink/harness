@@ -10,7 +10,7 @@ Where issues live; `issues`/`triage`/`prd`/`execute-issue` read+write it. Defaul
 (`${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`) is the same regardless; only publish/fetch differ.
 
 ## B — Triage label vocabulary
-The 5 canonical state roles + 2 category roles
+The 6 canonical state roles + 2 category roles
 (`${CLAUDE_PLUGIN_ROOT}/shared/triage-labels.md`). Default: each role's string = its name. If the
 tracker already uses different label names, map them so `triage` applies the right ones instead of
 creating duplicates.

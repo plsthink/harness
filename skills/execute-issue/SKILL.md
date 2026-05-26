@@ -30,7 +30,8 @@ already happened upstream (`think`→`issues`→`triage`). Dispatches `builder` 
 6. **Bounded retry (~3)** of builder→reviewer. See [loop.md](references/loop.md) for the failsafe +
    Status merge-back rules.
 7. **Finish:** green → `Status: done` committed in the worktree, merge, delete worktree+branch.
-   Escalation → see loop.md (do NOT merge; write to main directly; keep worktree for inspection).
+   Escalation → see loop.md (do NOT merge; write `Status:`+findings to the issue on the main
+   checkout; keep worktree for inspection only).
 
 ## Pipeline
 - Reads:  `docs/work/<feature>/issues/NN-slug.md` (ready-for-agent + acceptance criteria); code
