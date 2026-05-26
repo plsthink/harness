@@ -1,6 +1,6 @@
 # Coding discipline — the 4 rules
 
-Cited by: `tdd`, `diagnose`, `architecture`, `execute-issue`. Owned distillation of the
+Cited by: `tdd`, `diagnose`, `execute-issue`, and the `builder` agent. Owned distillation of the
 karpathy guidelines. An always-cited reference, **not** a glob-routed convention.
 
 ## The 4 rules

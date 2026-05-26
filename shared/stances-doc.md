@@ -1,6 +1,6 @@
 # Stance format (ex-ADR)
 
-Cited by: `think`, `architecture`, `docs-review`, `tdd`. A stance is a decision
+Cited by: `think`, `architecture` (the skills that record a stance; consumers cite the project's `docs/stances/*`, not this format spec). A stance is a decision
 recorded as **current truth**, not a log. Renamed from ADR; the renumber/supersede machinery is
 gone (there are no numbers and nothing is superseded).
 

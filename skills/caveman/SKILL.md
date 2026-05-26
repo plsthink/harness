@@ -34,3 +34,8 @@ confirmations, and multi-step sequences where fragment order risks misread.
 
 ## Procedure
 - The hooks handle persistence. On manual invocation, just adopt the ruleset above.
+
+## Pipeline
+- Reads:  the ruleset above (SessionStart hook injects it; UserPromptSubmit re-pings each turn)
+- Writes: nothing
+- Next:   (none — a comms mode, runs alongside any skill)

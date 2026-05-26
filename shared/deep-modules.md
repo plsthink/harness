@@ -1,7 +1,7 @@
 # Deep modules — vocabulary
 
-Cited by: `tdd`, `architecture`, `prd`. Shared vocabulary for module design and the
-deletion test. Single-source so `tdd`/`architecture`/`prd` use the same words.
+Cited by: `tdd`, `architecture`, `prd`, `diagnose`, `zoom-out`. Shared vocabulary for module design and the
+deletion test. Single-source so every citer uses the same words.
 
 ## Vocabulary
 

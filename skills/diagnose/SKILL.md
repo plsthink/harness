@@ -19,7 +19,7 @@ verification). Use the domain glossary for a clear model; respect stances in the
    it. Be aggressive; iterate on the loop (faster, sharper, more deterministic). For the ranked
    menu of construction methods + the non-deterministic and HITL handling, read
    [feedback-loop.md](references/feedback-loop.md) (HITL last resort:
-   `scripts/hitl-loop.template.sh`). **Do not proceed without a loop you believe in.**
+   [hitl-loop.template.sh](scripts/hitl-loop.template.sh)). **Do not proceed without a loop you believe in.**
 2. **Reproduce.** Run the loop; confirm it produces the **user's** symptom (not a nearby one),
    reproducibly, and capture the exact symptom for later verification.
 3. **Hypothesise.** Generate **3–5 ranked falsifiable hypotheses** before testing any. Each states

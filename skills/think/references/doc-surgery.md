@@ -18,8 +18,8 @@ Loaded by `think` step 4 when domain docs exist and a term/claim/decision surfac
 
 ## Placement rules
 
-- Vocabulary → `CONTEXT.md` glossary (format: `shared/context-doc.md`). No implementation detail.
-- Vision / hard constraints / integrations → `PROJECT.md` (format: `shared/project-doc.md`).
+- Vocabulary → `CONTEXT.md` glossary (format: `${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`). No implementation detail.
+- Vision / hard constraints / integrations → `PROJECT.md` (format: `${CLAUDE_PLUGIN_ROOT}/shared/project-doc.md`).
 - A hard-to-reverse AND surprising AND traded-off decision → a stance (format:
-  `shared/stances-doc.md`). Durable reversal → a `Rejected:` line, not a new doc.
+  `${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`). Durable reversal → a `Rejected:` line, not a new doc.
 - Anything not durable+cross-session → leave it in the conversation; it is not a domain doc.

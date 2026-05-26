@@ -1,6 +1,6 @@
 # PROJECT brief format
 
-Cited by: `think`, `prd`, `architecture`, `docs-review`, `onboard`.
+Cited by: `think`, `onboard` (the doc's writers; consumers cite the project's `docs/PROJECT.md`, not this format spec).
 `PROJECT.md` is a brief with a **closed** category list — never freeform. Bloat control is
 structural (closed categories + per-entry size cap + links out), not willpower.
 

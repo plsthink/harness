@@ -1,6 +1,6 @@
-# Authoring standard — every skill and agent
+# Authoring standard — every skill, agent, and shared module
 
-Cited by `new-skill` + `new-agent`. A skill reference, **not** a glob-routed
+Cited by: `new-skill`, `new-agent`. A skill reference, **not** a glob-routed
 convention — it's "how the scaffolders work," not good-practice about edited code. The harness is
 only lean if each unit is. Hard rules:
 
@@ -12,8 +12,10 @@ only lean if each unit is. Hard rules:
   decision tables → bundled reference files, **loaded only when the step that needs them runs**
   (e.g. `tdd` loads `references/mocking.md` only when a mocking question arises). The entry file
   *names* the reference and says when to read it; it does not inline the content.
-- **One level deep.** References do not chain into more references. `SKILL.md → references/x.md`
-  and stop.
+- **One level deep.** No deepening *chain*: `SKILL.md → references/x.md` and stop — a reference must
+  not pull in a *further required* reading layer. Lateral sibling cross-links within one skill's own
+  references are fine (branch-routing or shared-vocab, e.g. prototype `LOGIC.md`↔`UI.md`, architecture
+  refs → `LANGUAGE.md`); they add no depth.
 - **Scripts for determinism.** Anything mechanical (loops, scaffolding, validation) → an
   executable in `scripts/`, not prose the model re-derives each run.
 - **Shared over local.** Cross-cutting conventions live once in `shared/` and are referenced by
@@ -37,6 +39,16 @@ Every `SKILL.md` ends with the standard block (scaffold from `templates/skill/SK
 - Writes: <files / docs/work state it produces>
 - Next:   <skill name(s) that typically follow>
 ```
+
+## Shared modules
+
+- **`Cited by:` header.** Every `shared/` module doc opens with `Cited by: ` + the
+  comma-separated literal citers (the `skills/` and `agents/` that reference it via
+  `${CLAUDE_PLUGIN_ROOT}/shared/<doc>`), e.g. ``Cited by: `new-skill`, `new-agent`.``. It is a
+  reverse-pointer for impact analysis — when you edit a shared doc, it names who to re-check.
+- **Keep it true.** The list must match the actual citers across both `skills/` and `agents/`
+  (`grep -rl` the doc path); a skill that stops citing the doc drops off, a new citer is added.
+  Derivable, so hand-maintained now — add a checker only if accuracy drift recurs (lean-first).
 
 ## Agents
 

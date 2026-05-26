@@ -7,7 +7,7 @@ disable-model-invocation: true
 # zoom-out
 
 Manual-only. Go up a layer: give a map of the relevant modules + callers in the project's glossary
-vocabulary (`${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`).
+vocabulary (`docs/CONTEXT.md`).
 
 ## When to fire
 - Manual invocation only (the user says "zoom out").

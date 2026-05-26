@@ -6,7 +6,8 @@ install.
 
 **Why:** The Matt Pocock installer model is built for consuming as-is — re-running setup clobbers
 edits (hash-tracked) and there's no home for cross-skill wiring or own hooks/agents. We already
-diverge (`consolidate-adrs`, copied `docs/agents/`). Owning makes divergence legitimate and gives
+diverge (slugged stances replace numbered ADRs; caveman re-authored to the lite ruleset, not
+forked). Owning makes divergence legitimate and gives
 one place to extend + interconnect. Cost — losing free upstream improvements — is mitigated by
 `docs/integrations/<src>.md` recording source URLs + pinned hashes for future cherry-picking.
 

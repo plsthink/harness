@@ -31,5 +31,5 @@ shared over local).
 
 ## Pipeline
 - Reads:  `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`; `templates/`
-- Writes: `skills/<name>/SKILL.md` (+ `references/`, `scripts/`); maybe `shared/pipeline.md`
+- Writes: `skills/<name>/SKILL.md` (+ `references/`, `scripts/`); maybe `${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`
 - Next:   (use the new skill)

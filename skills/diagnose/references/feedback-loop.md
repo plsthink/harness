@@ -13,7 +13,7 @@ of the fix.
 7. **Property / fuzz loop** — for "sometimes wrong", run 1000 random inputs.
 8. **Bisection harness** — automate "boot at state X, check, repeat" for `git bisect run`.
 9. **Differential loop** — same input through old vs new (or two configs), diff outputs.
-10. **HITL bash script** — last resort; drive the human with `scripts/hitl-loop.template.sh` so the
+10. **HITL bash script** — last resort; drive the human with [hitl-loop.template.sh](../scripts/hitl-loop.template.sh) so the
     loop stays structured; captured output feeds back.
 
 ## Iterate on the loop

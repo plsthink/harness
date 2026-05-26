@@ -1,6 +1,6 @@
 # CONTEXT glossary format
 
-Cited by: `think`, `prd`, `issues`, `tdd`, `architecture`, `docs-review`, `onboard`.
+Cited by: `think`, `onboard` (the doc's writers; consumers cite the project's `docs/CONTEXT.md`, not this format spec).
 `CONTEXT.md` is a **glossary only** — the proven-lean contract. Do not broaden it into "any
 project context"; a freeform bucket is the context-rot vector (grows until nobody reads it).
 

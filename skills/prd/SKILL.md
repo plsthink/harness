@@ -14,8 +14,8 @@ Synthesize conversation + codebase understanding → a PRD at `docs/work/<featur
 ## Procedure
 
 1. **Explore the repo** to ground the current state (if not already done). Use the project's
-   **domain glossary vocabulary** throughout (`${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`), and
-   respect stances in the area you're touching (`${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`).
+   **domain glossary vocabulary** throughout (`docs/CONTEXT.md`), and
+   respect stances in the area you're touching (`docs/stances/*`).
 2. **Sketch the modules** to build/modify. Hunt **deep modules** — small interface, deep
    implementation, testable in isolation — using
    `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` (incl. the deletion test). **Confirm with the

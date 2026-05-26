@@ -9,8 +9,8 @@ Install: idea-only (folded, not vendored)
 
 ## What we dropped (why)
 - The standalone plugin/skill packaging — dropped: it's an always-cited reference, not an
-  intent-triggered skill; lives in `shared/` and is cited by tdd/diagnose/architecture/execute-issue.
+  intent-triggered skill; lives in `shared/` and is cited by tdd/diagnose/execute-issue + the builder agent.
 
 ## Re-diff protocol
 - fetch upstream, diff `2c606141..HEAD` on the guidelines content.
-- changed rule → evaluate against `shared/coding-discipline.md`; re-pin if adopted.
+- changed rule → evaluate against `${CLAUDE_PLUGIN_ROOT}/shared/coding-discipline.md`; re-pin if adopted.

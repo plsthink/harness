@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/docs/scripts/check-plugin-fresh.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking harness plugin freshness..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "out=$(bash \"$CLAUDE_PROJECT_DIR/docs/scripts/check-refs.sh\" 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; }",
+            "timeout": 15,
+            "statusMessage": "Checking reference integrity..."
+          },
+          {
+            "type": "command",
+            "command": "fp=$(grep -o '\"file_path\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | head -1); case \"$fp\" in *check-refs.sh*|*check-refs.test.sh*) out=$(bash \"$CLAUDE_PROJECT_DIR/docs/scripts/check-refs.test.sh\" 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; };; esac",
+            "timeout": 15,
+            "statusMessage": "Self-testing reference checker..."
+          },
+          {
+            "type": "command",
+            "command": "fp=$(grep -o '\"file_path\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | head -1); case \"$fp\" in *scaffold.sh*|*scaffold.test.sh*) out=$(bash \"$CLAUDE_PROJECT_DIR/docs/scripts/scaffold.test.sh\" 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; };; esac",
+            "timeout": 15,
+            "statusMessage": "Self-testing scaffolder..."
+          },
+          {
+            "type": "command",
+            "command": "fp=$(grep -o '\"file_path\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | head -1); case \"$fp\" in *caveman-activate.js*|*caveman-mode-tracker.js*|*caveman/SKILL.md*|*caveman-hooks.test.sh*) out=$(bash \"$CLAUDE_PROJECT_DIR/docs/scripts/caveman-hooks.test.sh\" 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; };; esac",
+            "timeout": 15,
+            "statusMessage": "Self-testing caveman hooks..."
+          }
+        ]
+      }
+    ]
+  }
+}

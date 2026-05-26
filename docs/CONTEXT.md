@@ -27,7 +27,7 @@ _Avoid_: memory, retro
 many). One level deep — references never chain.
 _Avoid_: doc (ambiguous)
 
-**Pipeline** — the skill-chain graph (`shared/pipeline.md`); the contract is the `Next:` footer on
+**Pipeline** — the skill-chain graph (`${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`); the contract is the `Next:` footer on
 each `SKILL.md` plus the `docs/work/` file substrate.
 _Avoid_: workflow engine, orchestrator
 

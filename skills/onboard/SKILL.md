@@ -38,7 +38,7 @@ so don't grill "what counts as CONTEXT" — just settle 3 config choices + seed 
      (`${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`); repoint `CONTEXT-MAP.md` after moving.
    - **ADR → stance** in *doc prose*: rewrite `docs/adr/NNNN-*.md` → `docs/stances/<slug>.md`
      (Stance/Why/Rejected, no numbers/Status/supersede) and flip the word `ADR`→`stance` across
-     PROJECT/CONTEXT prose. Drop superseded ADRs to git history.
+     `PROJECT`/`CONTEXT` (and any domain-doc) prose. Drop superseded ADRs to git history.
    - **Source-comment `ADR-NNNN` sweep** (often ~hundreds across many files): flag it as a **tracked
      follow-up** in `docs/stances/README.md` (transitional bridge), don't silently leave the bridge
      as if permanent. Sweep lazily on a clean tree if the code is mid-refactor.
