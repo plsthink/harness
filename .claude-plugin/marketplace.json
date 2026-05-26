@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "harness",
+  "description": "Personally-owned, multi-project Claude Code harness: skills, agents, hooks, and shared conventions.",
+  "owner": {
+    "name": "plsthink"
+  },
+  "plugins": [
+    {
+      "name": "harness",
+      "description": "Multi-project harness: think/prd/issues/tdd pipeline, execute-issue loop, shared conventions, owned caveman.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

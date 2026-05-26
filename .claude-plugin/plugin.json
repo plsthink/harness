@@ -1,0 +1,33 @@
+{
+  "name": "harness",
+  "description": "Personally-owned, multi-project Claude Code harness. Bundles the think/prd/issues/tdd pipeline, the execute-issue worktree loop, owned investigator/builder/reviewer agents, shared filesystem-contract conventions, and a thin owned caveman mode.",
+  "author": {
+    "name": "plsthink"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/caveman-activate.js\"",
+            "timeout": 5,
+            "statusMessage": "Loading caveman mode..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/caveman-mode-tracker.js\"",
+            "timeout": 5,
+            "statusMessage": "Tracking caveman mode..."
+          }
+        ]
+      }
+    ]
+  }
+}
