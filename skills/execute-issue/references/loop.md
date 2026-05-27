@@ -72,11 +72,17 @@ may spot-check.
   source — no merge commit). Run the land + cleanup **from the main checkout, never from inside the
   worktree** (running it from the worktree self-merges to a no-op and `git worktree remove
   <central-home worktree>` — its location is defined in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` —
-  then deletes your cwd mid-command).
+  then deletes your cwd mid-command). After the land, still **from the main checkout** (same cwd
+  rule), invoke the reaper `${CLAUDE_PLUGIN_ROOT}/scripts/reap-done-features.sh "$CLAUDE_PROJECT_DIR"`;
+  if it reports a deleted dir, record it in ONE `docs`-typed commit scoped to the feature slug (never
+  an issue/PRD number) — contract in `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md` "Reap
+  (done-feature cleanup)". Reap is green-path-only.
 - **Escalation path:** write `Status:` + findings + handoff-doc-path to the issue file on the
   **main checkout directly**. The kept worktree (in the central home, per
   `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`) is for **inspection only** — never the source of
-  truth for the failed status. (Worktree = exclusive lock, so no concurrent-edit conflict.)
+  truth for the failed status. (Worktree = exclusive lock, so no concurrent-edit conflict.) **No
+  reap here** — escalation writes a non-`done` status and does not land, so a feature with a stuck
+  issue keeps its full spec.
 
 ## tdd-guard interaction (settled session 5)
 The red-green / test-first expectation is gated by the project's `tdd-applies` HARNESS-CONFIG key.

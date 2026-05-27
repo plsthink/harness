@@ -54,9 +54,17 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
 8. **Finish:** green → `Status: done` committed in the worktree, then **land** per
    `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (rebase the issue branch onto its base then
    fast-forward only — single source, run from the main checkout), remove the central-home worktree
-   (location per the module) + delete the branch.
+   (location per the module) + delete the branch. Then **reap** (GREEN PATH ONLY): from the main
+   checkout (same cwd rule as the land — never from inside the worktree), invoke
+   `${CLAUDE_PLUGIN_ROOT}/scripts/reap-done-features.sh "$CLAUDE_PROJECT_DIR"` (the main-checkout
+   root). It hard-deletes every feature dir whose issue set is non-empty and all-`done` and reports
+   each on stdout; if it reported any deletion, make ONE `docs`-typed commit scoped to the feature
+   slug — never an issue/PRD number — e.g. `docs(<feature>): reap done feature dir`. The contract is
+   in `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md` "Reap (done-feature cleanup)".
    Escalation → see loop.md (do NOT merge; emit a handoff doc, then write `Status:`+findings+handoff-path
-   to the issue on the main checkout; keep the central-home worktree for inspection only).
+   to the issue on the main checkout; keep the central-home worktree for inspection only). **No reap
+   on the escalation path** — it writes a non-`done` status and does not land, so a feature with a
+   stuck issue is never reaped.
 
 ## Pipeline
 - Reads:  `docs/work/<feature>/issues/NN-slug.md` (ready-for-agent + acceptance criteria); code

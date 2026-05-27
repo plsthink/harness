@@ -50,6 +50,27 @@ Type:   <category>  # bug | enhancement
   `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`, is for inspection only, never the source of truth
   for the failed status). Worktree = exclusive lock → no concurrent-edit conflict.
 
+## Reap (done-feature cleanup)
+
+The reaper (`${CLAUDE_PLUGIN_ROOT}/scripts/reap-done-features.sh`) sweeps spent feature dirs so the
+tracker shows only live work.
+
+- **Trigger:** `execute-issue`'s **green path only**, after the land completes. The escalation path
+  writes a non-`done` status and never lands, so it never reaps.
+- **Guard (present AND all-done):** a feature dir is reaped only when its issue set is **non-empty**
+  AND **every** issue reads `Status: done`. An empty issue set is never reaped — that is work not yet
+  broken down, not finished work (the load-bearing vacuous-done guard).
+- **Concurrency:** sibling issues land serially via rebase-plus-fast-forward (see
+  `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`), so only the **last** sibling to land observes
+  every sibling as `done` — that lander reaps. Race-free by construction; no locking.
+- **Action:** hard-delete the whole `docs/work/<feature>/` dir (PRD + issues together); git history
+  is the archive. Recorded as ONE `docs`-typed commit scoped to the feature slug, never an issue/PRD
+  number.
+- **No pre-delete reference check** (see PRD `docs/work/reap-done-features/`): the commit grammar
+  already forbids durable refs to deletable artifacts, so a surviving inbound link is an invariant
+  violation, not an expected case. `docs/scripts/check-refs.sh` (auto-run by the path-gated
+  PostToolUse hook) is the loud safety net — a dangling ref turns it red and the reap is reverted.
+
 ## Publish / fetch
 
 The tracker is always local `docs/work/` (see stance: tracker-always-local): "publish" = write the
