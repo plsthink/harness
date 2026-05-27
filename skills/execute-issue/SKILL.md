@@ -22,8 +22,9 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
 1. **Verify the contract.** Read `docs/work/<feature>/issues/NN-slug.md`
    (`${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`). Confirm `Status: ready-for-agent` + testable
    acceptance criteria. If under-specified, stop → `needs-info` (don't guess — the gate is upstream).
-2. **Worktree.** Create git worktree + branch `issue-NN-slug` (exclusive lock → no concurrent-edit
-   conflict). Work happens there.
+2. **Worktree.** Create git worktree + branch `issue-NN-slug` under the central worktree home per
+   `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (NOT inside the project tree, NOT a sibling of it —
+   the module owns the path). Exclusive lock → no concurrent-edit conflict. Work happens there.
 3. **Decompose at runtime** into tasks (internal, not human-gated — the gate was upstream). The
    issue stays the spec.
 4. **Per task: fork a fresh `builder`** from the parent's full context (full fidelity, no
@@ -52,9 +53,10 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
    escalate via step 8. Default-to-escalate.
 8. **Finish:** green → `Status: done` committed in the worktree, then **land** per
    `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (rebase the issue branch onto its base then
-   fast-forward only — single source, run from the main checkout), delete worktree+branch.
+   fast-forward only — single source, run from the main checkout), remove the central-home worktree
+   (location per the module) + delete the branch.
    Escalation → see loop.md (do NOT merge; emit a handoff doc, then write `Status:`+findings+handoff-path
-   to the issue on the main checkout; keep worktree for inspection only).
+   to the issue on the main checkout; keep the central-home worktree for inspection only).
 
 ## Pipeline
 - Reads:  `docs/work/<feature>/issues/NN-slug.md` (ready-for-agent + acceptance criteria); code

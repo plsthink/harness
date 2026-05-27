@@ -70,10 +70,12 @@ may spot-check.
 - **Green path:** `Status: done` is committed inside the worktree, then the branch **lands** per the
   rebase-plus-fast-forward land procedure in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (single
   source — no merge commit). Run the land + cleanup **from the main checkout, never from inside the
-  worktree** (running it from the worktree self-merges to a no-op and `git worktree remove` then
-  deletes your cwd mid-command).
+  worktree** (running it from the worktree self-merges to a no-op and `git worktree remove
+  <central-home worktree>` — its location is defined in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` —
+  then deletes your cwd mid-command).
 - **Escalation path:** write `Status:` + findings + handoff-doc-path to the issue file on the
-  **main checkout directly**. The kept worktree is for **inspection only** — never the source of
+  **main checkout directly**. The kept worktree (in the central home, per
+  `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`) is for **inspection only** — never the source of
   truth for the failed status. (Worktree = exclusive lock, so no concurrent-edit conflict.)
 
 ## tdd-guard interaction (settled session 5)

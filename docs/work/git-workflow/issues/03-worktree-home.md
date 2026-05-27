@@ -1,6 +1,6 @@
 # 03 — worktree-home
 
-Status: ready-for-agent   <!-- see triage-labels.md state roles -->
+Status: done   <!-- see triage-labels.md state roles -->
 Type: enhancement       <!-- bug|enhancement -->
 
 ## What to build

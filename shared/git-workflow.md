@@ -84,3 +84,23 @@ Squash is rejected: it would collapse the separate spec-amendment commits (the `
 fix-commits) and break their revertable-as-distinct-units guarantee that the execute-issue autonomy
 stance depends on. The builder's one-clean-commit-per-task (above) is what keeps the linear trunk
 meaningful without squashing.
+
+## Worktree home
+
+Per-issue worktrees live in a central, harness-owned home, namespaced per project by the repo-root
+directory basename, then per issue branch:
+
+```
+${HOME}/.harness/worktrees/<project-basename>/issue-NN-slug
+```
+
+### Why outside the project tree
+
+The home sits OUTSIDE the project tree AND its parent dir. So it needs no `.gitignore` entry, and is
+immune to the harness's nearest-docs walk and the tree-scanning PostToolUse hooks — an in-tree or
+sibling worktree would otherwise be treated as project content to scan.
+
+### Deferred collision
+
+Two repos with the same basename collide under this key. Accepted lean-first; a finer key is added
+only if it actually bites.

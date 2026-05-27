@@ -42,11 +42,13 @@ Type:   <category>  # bug | enhancement
 
 - **Green path:** `Status: done` is committed inside the worktree, then the branch lands via the
   rebase-plus-fast-forward land procedure in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (single
-  source — no merge commit); then delete worktree+branch.
+  source — no merge commit); then remove the worktree (it lives in the central home, per the same
+  module) + delete the branch.
 - **Escalation path:** on retry-exhaustion, do **not** merge. Write `Status:` (needs-info/
   ready-for-human) + findings + handoff-doc-path to the issue file on the **main checkout
-  directly** (the kept worktree is for inspection only, never the source of truth for the failed
-  status). Worktree = exclusive lock → no concurrent-edit conflict.
+  directly** (the kept worktree, in the central home per
+  `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`, is for inspection only, never the source of truth
+  for the failed status). Worktree = exclusive lock → no concurrent-edit conflict.
 
 ## Publish / fetch
 
