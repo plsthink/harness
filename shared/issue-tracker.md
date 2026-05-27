@@ -49,5 +49,5 @@ Type:   <category>  # bug | enhancement
 
 ## Publish / fetch
 
-Local-markdown tracker: "publish" = write the file + commit; "fetch" = read from `docs/work/`.
-(A project may map these to an external tracker via its `docs/AGENTS.md` config — same file shape.)
+The tracker is always local `docs/work/` (see stance: tracker-always-local): "publish" = write the
+file + commit; "fetch" = read from `docs/work/`.

@@ -19,10 +19,12 @@ Output format, one per line:
    matching the touched files (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` + project
    `docs/conventions/INDEX.md`); the builder consults them to write, the gate verifies (same model
    can miss them). Use Bash read-only to run tests / inspect (`git diff`, test runner) — no edits.
-3. **Test-first gate (tdd-guard fallback)** — for a test-first-built change (e.g. inside
-   `execute-issue`): verify a failing test existed before the implementation for each behavior. If
-   PreToolUse tdd-guard didn't enforce it in the forked subagent, this check is the enforcement.
-   Flag any behavior implemented without a prior red test. Whenever you re-run the suite (step 2),
-   confirm it **actually executed** the new tests — a "0 tests" green (runner discovered no test
-   file) is a false pass, not a green; flag it as a blocker.
+3. **Test-first gate (tdd-guard fallback)** — applies **only when tdd applies** (the project's
+   `tdd-applies` posture, stated in the dispatch). When it does: for a test-first-built change (e.g.
+   inside `execute-issue`) verify a failing test existed before the implementation for each behavior;
+   if PreToolUse tdd-guard didn't enforce it in the forked subagent, this check is the enforcement —
+   flag any behavior implemented without a prior red test. When tdd does **not** apply this gate is
+   **inert**: do not flag a behavior for lacking a prior red test. Independently, whenever you re-run
+   the suite (step 2) and tests DO run, confirm it **actually executed** the new tests — a "0 tests"
+   green (runner discovered no test file) is a false pass, not a green; flag it as a blocker.
 4. Emit findings. Empty output = no findings (don't pad with praise).

@@ -1,0 +1,16 @@
+# harness behavior-config schema — THE single source of the required config-key contract.
+#
+# Each non-comment line is `key: <what this key gates>`. A harness project records its answers in a
+# `<!-- HARNESS-CONFIG-START -->`/`<!-- HARNESS-CONFIG-END -->` block in its AGENTS.md (one
+# `key: value` line per key). check-onboarded.sh reads the required key list FROM THIS FILE and
+# diffs it against a project's recorded block — so EXPANDING THE CONTRACT IS A ONE-LINE EDIT HERE
+# (add a key line); no other file hardcodes the key set.
+#
+# Format rules: blank lines and lines beginning with `#` are ignored. A key line is
+# `<key>: <annotation>` where <key> is lowercase letters/hyphens. Only the key (left of the first
+# colon) is the contract; the annotation documents what behavior the key gates.
+
+context: navigation mode — single | packages (where the glossary/context lives; drives doc fan-out)
+tdd-applies: true | false — gates execute-issue's red->green TDD gate (slice 05)
+test-command: the command/procedure that runs this project's tests; tdd prefers a project-local test Skill if present, else this
+verify-method: the command/procedure that builds/runs the app for observable-behavior checks; the verifier prefers a project-local verify Skill if present, else this (slice 04)

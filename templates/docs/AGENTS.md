@@ -12,7 +12,21 @@ harness skills honor it rather than re-encode navigation (single-source).
 4. **On a decision:** read/append `docs/stances/<slug>.md`.
 5. Work substrate: `docs/work/<feature>/` (PRD.md + issues/NN-slug.md). Always at repo root, committed.
 
-## Config (the 3 choices)
-- **Tracker:** {{TRACKER}}            <!-- e.g. local-markdown docs/work/ -->
-- **Labels:** {{LABELS}}              <!-- triage category + state roles -->
-- **Context:** {{CONTEXT_MODE}}       <!-- single | multi-package -->
+## Config
+
+The parseable block below is what `${CLAUDE_PLUGIN_ROOT}/scripts/check-onboarded.sh` reads (keys
+must sit inside the START/END markers); the human-readable gloss follows each key. The START/END
+markers are the parseable contract — keep them; strip only the authoring hint comments.
+
+<!-- HARNESS-CONFIG-START -->
+context: {{CONTEXT_MODE}}
+tdd-applies: {{TDD_APPLIES}}
+test-command: {{TEST_COMMAND}}
+verify-method: {{VERIFY_METHOD}}
+<!-- HARNESS-CONFIG-END -->
+
+- **context:** {{CONTEXT_MODE}}       <!-- single | packages -->
+- **tdd-applies:** {{TDD_APPLIES}}    <!-- true | false: project's test-first posture -->
+- **test-command:** {{TEST_COMMAND}}  <!-- the command/procedure that runs tests; tdd prefers a project-local test Skill if present, else this -->
+- **verify-method:** {{VERIFY_METHOD}} <!-- the command/procedure that builds/runs the app for observable-behavior checks; the verifier prefers a project-local verify Skill if present, else this -->
+

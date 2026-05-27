@@ -19,6 +19,11 @@ shared over local).
    reference materials to include; where it sits in the pipeline (`Reads`/`Writes`/`Next`).
 2. **Scaffold the lean shape** from `templates/skill/SKILL.md` (+ `templates/skill/reference.md`
    per reference) via `templates/scaffold.sh` — so thin-by-default is the starting point.
+   **Target:** default is a **harness skill** (`skills/<name>/SKILL.md`). When the caller wants a
+   **project-local Skill** (e.g. `onboard` scaffolding a project's verify/test procedure the global
+   verifier/tdd defer to), pass a `.claude/skills/<name>/SKILL.md` dest instead — same template,
+   same `scaffold.sh` (it refuses to overwrite either way). Pick the target from the request; don't
+   write a project-local Skill into the harness's own `skills/`.
 3. **Draft:** fill the SKILL.md (description + triggers + ordered procedure + Pipeline footer).
    Move vocabulary/formats/examples/tables into `references/x.md`, named + loaded-on-demand from
    the procedure. Cross-cutting conventions → cite `${CLAUDE_PLUGIN_ROOT}/shared/...`, never copy.
@@ -31,5 +36,5 @@ shared over local).
 
 ## Pipeline
 - Reads:  `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`; `templates/`
-- Writes: `skills/<name>/SKILL.md` (+ `references/`, `scripts/`); maybe `${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`
+- Writes: `skills/<name>/SKILL.md` (harness skill) **or** project-local `.claude/skills/<name>/SKILL.md` (+ `references/`, `scripts/`); maybe `${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`
 - Next:   (use the new skill)

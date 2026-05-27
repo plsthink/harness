@@ -13,6 +13,8 @@ end-to-end (not a horizontal layer slice); many thin > few thick. Never edits th
 
 ## Procedure
 
+0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`);
+   on absent/stale, STOP and tell the user to run `/onboard`.
 1. **Gather context.** Work from the conversation/PRD. If passed an issue ref (number/URL/path),
    fetch and read its full body + comments.
 2. **Explore the codebase** (if not already). Titles/descriptions use the **domain glossary**

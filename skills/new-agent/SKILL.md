@@ -5,8 +5,8 @@ description: Grow the agent roster deliberately — the only sanctioned way to a
 
 # new-agent
 
-The curated path to add an agent (sibling to `new-skill`). The 3 generic agents
-(investigator/builder/reviewer) are a stance/tool **floor** — add a new agent only when a distinct
+The curated path to add an agent (sibling to `new-skill`). The 4 generic agents
+(investigator/builder/reviewer/verifier) are a stance/tool **floor** — add a new agent only when a distinct
 **stance+tools** is genuinely needed, not a persona label (see stance: agents-generic-floor).
 Enforce `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md` (flat single `.md`, no per-agent
 references/, no `model:` frontmatter, terse output, detail cited from `shared/`).
@@ -22,6 +22,10 @@ references/, no `model:` frontmatter, terse output, detail cited from `shared/`)
    project-local `.claude/agents/*` override over a global agent.
 2. **Scaffold** from `templates/agent.md` via `templates/scaffold.sh`: name, description (what +
    "Use when [triggers]"), `tools:` (least-privilege), role one-liner, output shape, thin procedure.
+   **Target:** the global roster (`agents/<name>.md`) or — for a project-specific agent (e.g.
+   `onboard` proposing one) — a **project-local** `.claude/agents/<name>.md` dest (same template,
+   same `scaffold.sh`, non-overwriting). The project-local file overrides the floor (see stance:
+   agents-generic-floor).
 3. **Keep it thin.** Any detail that would bloat the prompt → cite `${CLAUDE_PLUGIN_ROOT}/shared/...`.
    No `model:` frontmatter (inherit parent).
 4. **Wire dispatch:** note which skill(s) dispatch it (e.g. `execute-issue`, `architecture`) and
@@ -29,5 +33,5 @@ references/, no `model:` frontmatter, terse output, detail cited from `shared/`)
 
 ## Pipeline
 - Reads:  `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`; `templates/agent.md`
-- Writes: `agents/<name>.md`
+- Writes: `agents/<name>.md` (global) **or** project-local `.claude/agents/<name>.md`
 - Next:   (the skill that dispatches the new agent)

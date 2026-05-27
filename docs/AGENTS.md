@@ -15,7 +15,23 @@ this and works the repo; harness skills honor it rather than re-encode navigatio
 7. Work substrate: `docs/work/<feature>/` — per-feature PRD + issues + learnings.
 8. Authoring a skill/agent: `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`.
 
-## Config (the 3 choices)
-- **Tracker:** local-markdown `docs/work/`.
-- **Labels:** the triage roles (`${CLAUDE_PLUGIN_ROOT}/shared/triage-labels.md`).
-- **Context:** single (no packages).
+## Config
+
+The parseable block below is what `${CLAUDE_PLUGIN_ROOT}/scripts/check-onboarded.sh` reads (keys
+must sit inside the START/END markers); the human-readable gloss follows each key.
+
+<!-- HARNESS-CONFIG-START -->
+context: single
+tdd-applies: false
+test-command: bash docs/scripts/<name>.test.sh
+verify-method: bash docs/scripts/check-refs.sh
+<!-- HARNESS-CONFIG-END -->
+
+- **context:** single — no packages; the glossary lives in `docs/CONTEXT.md`.
+- **tdd-applies:** false — the harness is prose/skill authoring with no app or unit-test suite;
+  its only tests are targeted dev-script self-tests written ad hoc (the reviewer's test-first check
+  still applies per slice). A blanket red→green-per-task gate would be wrong for doc/skill slices.
+- **test-command:** the dev-script self-tests (`bash docs/scripts/<name>.test.sh`) — run on demand,
+  also auto-run via the PostToolUse path-gate in `.claude/settings.json`.
+- **verify-method:** no runtime app — verification is `bash docs/scripts/check-refs.sh` (reference
+  integrity) plus dogfooding the skills.

@@ -1,8 +1,8 @@
 # Triage labels — roles & state machine
 
-Cited by: `triage`, `issues`, `onboard`. Two category roles + six state roles, mapped
-to `Type:`/`Status:` lines on each issue (`issue-tracker.md`). A project's `docs/AGENTS.md` maps
-these roles onto its tracker's actual labels (the label-mapping config choice).
+Cited by: `triage`, `issues`, `onboard`. Two category roles + six state roles, written
+to `Type:`/`Status:` lines on each issue (`issue-tracker.md`). These are the harness's canonical
+labels — every project uses them verbatim (see stance: tracker-always-local).
 
 ## Category roles → `Type:`
 

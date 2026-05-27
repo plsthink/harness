@@ -13,6 +13,8 @@ interview** — that was `think`'s job; synthesize what you already know.
 
 ## Procedure
 
+0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`);
+   on absent/stale, STOP and tell the user to run `/onboard`.
 1. **Explore the repo** to ground the current state (if not already done). Use the project's
    **domain glossary vocabulary** throughout (`docs/CONTEXT.md`; for multi-package, also the
    per-package `packages/<pkg>/docs/CONTEXT.md` for the packages in scope via the `CONTEXT-MAP.md`

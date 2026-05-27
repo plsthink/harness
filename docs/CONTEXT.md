@@ -7,9 +7,15 @@ Glossary only — terms shared across the harness. No implementation detail (see
 on-demand `references/`. The bulk of the harness.
 _Avoid_: command, macro
 
-**Agent** — a subagent dispatched for a distinct stance+tools (investigator/builder/reviewer).
-Flat single `.md` under `agents/`, terse output, no persona, inherits the parent model.
+**Agent** — a subagent dispatched for a distinct stance+tools
+(investigator/builder/reviewer/verifier). Flat single `.md` under `agents/`, terse output, no
+persona, inherits the parent model.
 _Avoid_: persona, expert, role-player
+
+**Orchestrator** — a *role the main session plays*: reads the tracker, dispatches config-consuming
+work to forks, does all HITL, and holds no per-fork tool output (so the session stays clean). Not
+engine code — coordination still rides the filesystem contract (see stance: forks-never-hitl).
+_Avoid_: workflow engine, agent team, message bus
 
 **Convention** — glob-routed good-practice loaded before editing a matching file (`conventions/`
 global, `docs/conventions/` project). Drives/corrects the model deterministically.
@@ -28,8 +34,9 @@ many). One level deep — no *deepening* chain, though lateral sibling cross-lin
 _Avoid_: doc (ambiguous)
 
 **Pipeline** — the skill-chain graph (`${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`); the contract is the `Next:` footer on
-each `SKILL.md` plus the `docs/work/` file substrate.
-_Avoid_: workflow engine, orchestrator
+each `SKILL.md` plus the `docs/work/` file substrate. The runtime dispatcher of the pipeline is the
+*Orchestrator* (a session role), distinct from this static graph.
+_Avoid_: workflow engine, orchestration code
 
 **Product vs dogfood** — `shared/`+`conventions/` are *product* (cited via `${CLAUDE_PLUGIN_ROOT}`,
 reachable from any project); `docs/` is *dogfood* (nearest-`docs/` walk, harness-repo-only).

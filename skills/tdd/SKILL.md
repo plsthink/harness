@@ -10,11 +10,23 @@ only when green. Tests verify **behavior through public interfaces**, never impl
 Bound by `${CLAUDE_PLUGIN_ROOT}/shared/coding-discipline.md` (think-first, minimal diff,
 goal-driven verification).
 
+**OPT-IN, governed by `tdd-applies`** (the project's `AGENTS.md` HARNESS-CONFIG key — the schema
+single-sources it: `${CLAUDE_PLUGIN_ROOT}/scripts/check-onboarded.schema`). When `tdd-applies` is
+**false**, `execute-issue` skips the red-green gate and a task is **not** failed for lacking a prior
+failing test (see `execute-issue` steps 4–5); the red-green-refactor loop below applies as written
+only when `tdd-applies` is **true**. The test RUNNER resolves the same way the verifier resolves its
+verify procedure: **prefer a project-local test Skill** if the project ships one, **else** the
+project's `test-command` HARNESS-CONFIG value (a plain command, not a Skill ref) — **never a
+hardcoded/assumed runner**; resolve it before running any test below.
+
 ## When to fire
 - User wants to build a feature or fix a bug test-first / red-green-refactor / integration tests.
 
 ## Procedure
 
+0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`);
+   on absent/stale, STOP and tell the user to run `/onboard`. (When invoked inside `execute-issue`,
+   its own step 0 already cleared the gate — re-running is harmless.)
 1. **Plan.** Confirm the interface changes needed + which behaviors to test (prioritize — you
    can't test everything). Design interfaces for testability and hunt deep modules
    (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`); for surface/return-vs-side-effect/DI guidance
@@ -26,9 +38,10 @@ goal-driven verification).
    the files you'll touch (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` global + project
    `docs/conventions/INDEX.md`; project wins), as `builder` does.
 2. **Tracer bullet.** Write ONE test for ONE behavior → it fails (RED) → minimal code → passes
-   (GREEN). Proves the path end-to-end. **RED must be observed, not assumed:** confirm the new test
-   actually ran and failed for the behavior — coding-discipline rule 4's observed-verification bar
-   (bound above), which names the failure modes to rule out. What makes a
+   (GREEN). Proves the path end-to-end. **RED must be observed, not assumed:** run the project's
+   `test-command` (or project-local test Skill — see intro) and confirm the new test actually ran
+   and failed for the behavior — coding-discipline rule 4's observed-verification bar (bound above),
+   which names the failure modes to rule out. What makes a
    good vs bad test: [tests.md](references/tests.md). Mocking questions (boundaries only):
    [mocking.md](references/mocking.md).
 3. **Incremental loop.** For each remaining behavior: RED (next test) → GREEN (minimal code).
