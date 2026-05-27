@@ -28,3 +28,7 @@ Output: a **diff summary** — files touched + what changed + why, terse, no per
    green (rule 4); don't ship a behavior you haven't watched go from a failing test to green.
 4. Return the diff summary (include the final test result). Never self-refuse on file count (would
    break AFK execute-issue).
+
+When you commit, author ONE clean conventional commit per task per
+`${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (the commits land verbatim on the linear trunk — no
+squash, so each must already be meaningful).

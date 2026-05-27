@@ -29,7 +29,10 @@ interview** — that was `think`'s job; synthesize what you already know.
    See [prd-content.md](references/prd-content.md) for what each section must/must-not hold.
 4. **Publish** the PRD to `docs/work/<feature>/PRD.md` (`${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`).
    A PRD carries no `Status:` (that's a per-issue field); a converged design lets `issues` stamp its
-   slices `ready-for-agent` without extra triage.
+   slices `ready-for-agent` without extra triage. Then **commit the PRD**: one `docs`-typed commit
+   following the grammar in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (e.g.
+   `docs: add git-workflow PRD`). Agent-issued, so the enforcement hook governs it. After this the
+   tree is clean: no pending changes for the PRD.
 
 **No file paths or code snippets** in the PRD (they go stale). Exception: a prototype-produced
 snippet that encodes a decision more precisely than prose (state machine / reducer / schema / type

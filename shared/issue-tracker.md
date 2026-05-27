@@ -40,8 +40,9 @@ Type:   <category>  # bug | enhancement
 
 ## Status merge-back (execute-issue)
 
-- **Green path:** `Status: done` is committed inside the worktree and lands via the merge; then
-  delete worktree+branch.
+- **Green path:** `Status: done` is committed inside the worktree, then the branch lands via the
+  rebase-plus-fast-forward land procedure in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (single
+  source — no merge commit); then delete worktree+branch.
 - **Escalation path:** on retry-exhaustion, do **not** merge. Write `Status:` (needs-info/
   ready-for-human) + findings + handoff-doc-path to the issue file on the **main checkout
   directly** (the kept worktree is for inspection only, never the source of truth for the failed

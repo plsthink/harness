@@ -67,11 +67,11 @@ per the project `verify-method`, independent of `tdd-applies`). The parent need 
 may spot-check.
 
 ## Status merge-back
-- **Green path:** `Status: done` is committed inside the worktree and lands via the merge. Run the
-  merge + cleanup **from the main checkout, never from inside the worktree** (running `git merge`
-  from the worktree self-merges to a no-op and `git worktree remove` then deletes your cwd
-  mid-command). Order: `cd` to main → `git merge --no-ff issue-NN-slug` → verify tests green on main
-  → `git worktree remove <path>` → `git branch -d issue-NN-slug`.
+- **Green path:** `Status: done` is committed inside the worktree, then the branch **lands** per the
+  rebase-plus-fast-forward land procedure in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (single
+  source — no merge commit). Run the land + cleanup **from the main checkout, never from inside the
+  worktree** (running it from the worktree self-merges to a no-op and `git worktree remove` then
+  deletes your cwd mid-command).
 - **Escalation path:** write `Status:` + findings + handoff-doc-path to the issue file on the
   **main checkout directly**. The kept worktree is for **inspection only** — never the source of
   truth for the failed status. (Worktree = exclusive lock, so no concurrent-edit conflict.)

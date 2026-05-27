@@ -50,7 +50,9 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
    (done unchanged) → autonomously amend via forked `think`/`prd`/`issues` + re-stamp
    `ready-for-agent` + re-dispatch (bounded to ≈ one amend cycle); **goal-level / ambiguous** →
    escalate via step 8. Default-to-escalate.
-8. **Finish:** green → `Status: done` committed in the worktree, merge, delete worktree+branch.
+8. **Finish:** green → `Status: done` committed in the worktree, then **land** per
+   `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (rebase the issue branch onto its base then
+   fast-forward only — single source, run from the main checkout), delete worktree+branch.
    Escalation → see loop.md (do NOT merge; emit a handoff doc, then write `Status:`+findings+handoff-path
    to the issue on the main checkout; keep worktree for inspection only).
 

@@ -32,6 +32,11 @@ its own beyond the domain docs it edits.
    trade-off). See `${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`. Skip if any is missing.
 6. **Capture test before writing a domain doc:** "will a fresh agent in 3 months need this to
    avoid a mistake?" No → it stays in the conversation/PRD, not the docs.
+7. **Commit the domain docs at session end.** If you wrote/edited any domain doc this session,
+   make one `docs`-typed commit following the grammar in
+   `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (e.g. `docs(stances): record rebase-ff
+   landing`). Agent-issued, so the enforcement hook governs it. Leave a clean tree: no pending
+   changes for the docs you wrote. If no domain doc changed, there is nothing to commit (no-op).
 
 ## Pipeline
 - Reads:  conversation; `docs/PROJECT.md`, `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/<slug>.md`; code

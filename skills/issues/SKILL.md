@@ -30,7 +30,11 @@ end-to-end (not a horizontal layer slice); many thin > few thick. Never edits th
    stamping `ready-for-agent` — the upstream AFK gate.
 6. **Publish in dependency order** (blockers first, so "Blocked by" can cite real ids). Scaffold
    each from `templates/work/issue.md` via `templates/scaffold.sh`; fill What-to-build / Acceptance criteria / Blocked-by.
-   Layout + Status/Type semantics: `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`.
+   Layout + Status/Type semantics: `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`. Then **commit
+   the whole slice breakdown in ONE `docs` commit** following the grammar in
+   `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (e.g. `docs: break git-workflow into issues`).
+   Agent-issued, so the enforcement hook governs it. After this the tree is clean: no pending
+   changes for the slice files.
 
 **No file paths/code snippets** (same prototype-snippet exception as `prd`). Read this skill's
 learnings in `docs/work/learnings/issues.md` per the convention (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
