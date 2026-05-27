@@ -17,7 +17,7 @@ instead of duplicating a graph).
 prototype ─┐                                                   │
 think ─────┼─→ prd ──→ issues ──→ (triage) ──→ execute-issue ──┴→ tdd ──→ (handoff | diagnose)
            │   PRD.md   issues/NN              reviewer+verifier   red-green
-           │                                   gates (worktree+forks)
+           │                                   gates (worktree+fresh dispatch)
            │
 diagnose ──┴─→ architecture        (bug-fix loop; hands findings to architecture)
 architecture → tdd                 (implement a deepening)
@@ -40,9 +40,9 @@ caveman / zoom-out / new-skill / new-agent / onboard   (ad-hoc / meta / bootstra
   `execute-issue`'s `references/loop.md` for the mechanics.
 - **Orchestrator (runtime dispatcher)** — this graph is the *static* skill-chain. At runtime the
   pipeline is driven by the **Orchestrator**, a session role (not a workflow engine): it reads the
-  tracker, dispatches each config-consuming stage to a fork, holds no per-fork output, and is the
-  sole HITL point. It is distinct from this static graph (see stances: forks-never-hitl,
-  execute-issue-afk-autonomy).
+  tracker, dispatches each config-consuming stage to a fresh subagent, holds no per-child output,
+  and is the sole HITL point. It is distinct from this static graph (see stances: subagents-never-hitl,
+  dispatch-fresh-not-fork, execute-issue-afk-autonomy).
 - **tdd** — invoked inside `execute-issue` per task; also directly for hand-driven work.
 - **diagnose → architecture → tdd** — the bug/deepening loop. `diagnose` fixes; hands
   architectural findings to `architecture`; `architecture` hands an approved deepening to `tdd`.

@@ -3,10 +3,15 @@
 Loaded by `execute-issue` steps 7–8.
 
 ## Dispatch model
-- **Forked subagents** (`CLAUDE_CODE_FORK_SUBAGENT`, already on): each task forks fresh from the
-  parent's full context → full fidelity (no lossy recap) AND no cross-task drift (siblings fork
-  independently from the parent point). `verifier` is forked the same way as builder/reviewer
-  (conditional second gate) — still no inter-agent messaging.
+- **Fresh dispatched subagents** via the dispatch-brief template
+  (`${CLAUDE_PLUGIN_ROOT}/shared/dispatch-brief.md`): each task dispatches a child with a **clean
+  context**, briefed only by the thin pointer-brief. The child is a **pure function of (brief +
+  what it reads from disk)** — no lossy recap AND no cross-task drift, because siblings share nothing
+  (clean per-child contexts), not because they branch off a shared parent point. The loop does
+  **not** rely on any context-inheritance env flag; orchestrator session length is irrelevant to
+  child quality.
+  `verifier` is dispatched the same way as builder/reviewer (conditional second gate) — still no
+  inter-agent messaging.
 - **Not** agent-teams — no inter-agent messaging needed for a linear loop (teams env stays on but
   unused here).
 
@@ -30,15 +35,18 @@ handles a wrong *implementation*; this handles a wrong *spec*.
   on any doubt.
   - **Path-level (answer: NO — the goal/intent stands, only the *how* is wrong; e.g. a wrong
     assumption, a missing edge case, a task that needs splitting): AUTONOMOUS.** The Orchestrator (the
-    session role, not a new engine) re-enters the upstream skills **as forks** to amend the spec, then
-    re-stamps and re-dispatches:
+    session role, not a new engine) re-enters the upstream skills **inline in its own session** (not as
+    a child) to amend the spec, then **writes the amendment back to the issue file**, re-stamps, and
+    re-dispatches:
     - `issues` — amend the issue's *how* / acceptance detail (the usual case: the wrong *how* lives in
       the issue).
     - `prd` — amend a PRD-level approach (when the wrong *how* lives in the PRD, not just the issue).
     - `think` — only when the approach itself needs re-derivation (not a local fix).
     Then re-stamp `Status: ready-for-agent` on the amended issue and **re-dispatch the builder** (a
-    fresh fork) against the amended spec. Forks never HITL (see stance: forks-never-hitl) — the
-    Orchestrator, not the fork, owns the rewrite.
+    fresh subagent) against the amended spec, via the **same dispatch-brief** — the amendment lives in
+    the issue file, never as a sidecar delta in the brief, so builder/reviewer/verifier all read one
+    spec from disk. The child never HITLs (see stance: subagents-never-hitl) — the Orchestrator, not the
+    child, owns the rewrite.
   - **Goal-level (answer: YES — a scope change or a new user-facing decision) OR any AMBIGUITY:
     ESCALATE HITL** via the **existing escalation path** (AFK failsafe, above): stop, do **NOT**
     merge, write findings, flip `Status:` on the **main checkout**, emit a handoff doc. This reuses —
@@ -90,7 +98,7 @@ The red-green / test-first expectation is gated by the project's `tdd-applies` H
 is not flagged for lacking a prior red test); the builder/verifier still confirm behavior via the
 project's `test-command` / `verify-method`. **When on**, the below applies:
 tdd-guard is an optional, per-project `PreToolUse` hook on Write|Edit; it is **not installed by the
-harness**. Whether it fires inside forked subagents is moot for correctness: the builder runs its
+harness**. Whether it fires inside dispatched subagents is moot for correctness: the builder runs its
 own tests (Bash, above) and the `reviewer` test-first gate (step 5) re-checks that a failing test
 preceded each behavior. A project that wants *enforced* test-first adds tdd-guard to its own
 `.claude/settings.json` as hardening on top of — not a replacement for — the reviewer gate.

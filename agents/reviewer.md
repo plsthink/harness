@@ -22,7 +22,7 @@ Output format, one per line:
 3. **Test-first gate (tdd-guard fallback)** — applies **only when tdd applies** (the project's
    `tdd-applies` posture, stated in the dispatch). When it does: for a test-first-built change (e.g.
    inside `execute-issue`) verify a failing test existed before the implementation for each behavior;
-   if PreToolUse tdd-guard didn't enforce it in the forked subagent, this check is the enforcement —
+   if PreToolUse tdd-guard didn't enforce it in the dispatched subagent, this check is the enforcement —
    flag any behavior implemented without a prior red test. When tdd does **not** apply this gate is
    **inert**: do not flag a behavior for lacking a prior red test. Independently, whenever you re-run
    the suite (step 2) and tests DO run, confirm it **actually executed** the new tests — a "0 tests"

@@ -13,8 +13,9 @@ persona, inherits the parent model.
 _Avoid_: persona, expert, role-player
 
 **Orchestrator** — a *role the main session plays*: reads the tracker, dispatches config-consuming
-work to forks, does all HITL, and holds no per-fork tool output (so the session stays clean). Not
-engine code — coordination still rides the filesystem contract (see stance: forks-never-hitl).
+work to **fresh subagents** (briefed by a thin pointer-template, not context-inheriting forks — see
+stance: dispatch-fresh-not-fork), does all HITL, and holds no per-child tool output. Coordination
+rides the filesystem contract, not engine code (see stance: subagents-never-hitl).
 _Avoid_: workflow engine, agent team, message bus
 
 **Convention** — glob-routed good-practice loaded before editing a matching file (`conventions/`

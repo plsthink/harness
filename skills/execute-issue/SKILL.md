@@ -1,6 +1,6 @@
 ---
 name: execute-issue
-description: Take a ready-for-agent issue and execute it fully AFK — git worktree, runtime task decomposition, a fresh forked builder subagent per task, a static reviewer gate against the acceptance criteria, a conditional verifier gate that builds/runs the app when the criteria declare observable behavior, tdd inside each task, then merge-or-escalate. Use when the user wants to implement a ready-for-agent issue, run an issue autonomously, or "execute this issue".
+description: Take a ready-for-agent issue and execute it fully AFK — git worktree, runtime task decomposition, a fresh builder subagent dispatched per task, a static reviewer gate against the acceptance criteria, a conditional verifier gate that builds/runs the app when the criteria declare observable behavior, tdd inside each task, then merge-or-escalate. Use when the user wants to implement a ready-for-agent issue, run an issue autonomously, or "execute this issue".
 ---
 
 # execute-issue
@@ -27,11 +27,17 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
    the module owns the path). Exclusive lock → no concurrent-edit conflict. Work happens there.
 3. **Decompose at runtime** into tasks (internal, not human-gated — the gate was upstream). The
    issue stays the spec.
-4. **Per task: fork a fresh `builder`** from the parent's full context (full fidelity, no
-   cross-task drift — siblings fork independently), prefers a **project-local specialist agent** if
-   the project ships one, else the floor. execute-issue resolved `tdd-applies` at step 0 (the
-   project's HARNESS-CONFIG posture) and **states it to the fork** (forks never pause to ask — see
-   stance: forks-never-hitl). When `tdd-applies` is **true**, the builder runs `tdd` (red→green) for
+4. **Per task: dispatch a fresh `builder` subagent** (clean context) briefed by the dispatch-brief
+   template (`${CLAUDE_PLUGIN_ROOT}/shared/dispatch-brief.md`). Sibling independence and the absence
+   of cross-task drift now come from **clean per-child contexts** (each child shares nothing), not
+   from sharing a parent point; the child is a **pure function of (thin brief + what it
+   reads from disk)**, so orchestrator session length does not affect child output. Prefers a
+   **project-local specialist agent** if the project ships one, else the floor. A dispatch whose
+   required brief pointer is **missing or empty fails before the child runs** — the orchestrator
+   repairs the brief (or the issue behind it) and re-dispatches; it never dispatches an under-briefed
+   child and never guesses. execute-issue resolved `tdd-applies` at step 0 (the project's
+   HARNESS-CONFIG posture) and **states it in the brief** (the child never pauses to ask — see
+   stance: subagents-never-hitl). When `tdd-applies` is **true**, the builder runs `tdd` (red→green) for
    the task's behavior. When **false**, the builder implements WITHOUT a forced red-green gate and is
    **not** failed for lacking a prior failing test (it still runs the project's `test-command` tests
    if any exist).
@@ -39,7 +45,7 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
    fallback) applies **only when `tdd-applies` is on**; when off, the reviewer does not fail the
    change for lacking a prior red test. On findings → loop back to builder.
 6. **Conditional `verifier` gate.** IF the acceptance criteria declare **observable runtime
-   behavior** (UI / endpoint / CLI output / app state), fork a fresh `verifier` (like
+   behavior** (UI / endpoint / CLI output / app state), dispatch a fresh `verifier` subagent (like
    builder/reviewer) to build+run the app per the project's `verify-method` config (or a project-local
    verify Skill) and confirm those behaviors. **SKIP** for a doc-only / pure-refactor / config issue
    (no observable runtime behavior) so it doesn't block on an un-runnable change. A verifier failure
@@ -48,9 +54,11 @@ a wrong spec. Dispatches `builder` + `reviewer` + a
    failsafe + Status merge-back rules. When a finding reveals the **spec** is wrong (not the
    implementation), take the graded **backward edge** (see loop.md "Spec mutation"; stance:
    execute-issue-afk-autonomy): "done" is the frozen goal but the path is mutable — **path-level**
-   (done unchanged) → autonomously amend via forked `think`/`prd`/`issues` + re-stamp
-   `ready-for-agent` + re-dispatch (bounded to ≈ one amend cycle); **goal-level / ambiguous** →
-   escalate via step 8. Default-to-escalate.
+   (done unchanged) → the orchestrator amends **inline** (`think`/`prd`/`issues` run in the
+   orchestrator session, not as a child subagent), **writes the amendment to the issue file** (the one
+   source — reviewer/verifier read the issue from disk, so no amendment is carried as a sidecar delta
+   in any brief), re-stamps `ready-for-agent`, and **re-dispatches via the same brief** (bounded to ≈
+   one amend cycle); **goal-level / ambiguous** → escalate via step 8. Default-to-escalate.
 8. **Finish:** green → `Status: done` committed in the worktree, then **land** per
    `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (rebase the issue branch onto its base then
    fast-forward only — single source, run from the main checkout), remove the central-home worktree
