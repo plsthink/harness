@@ -6,9 +6,10 @@ FORCING FUNCTION: the named uncovered task, e.g. "no skill turns a failing produ
 
 HALT: when the pipeline covers the repeatable tasks in scope and the remaining gaps are deliberately deferred (record the deferral as a stance or learning so a later iteration does not re-litigate it), this goal is exhausted — report that the run's configured stop condition is met, and do not build a skill for a task already covered by composing existing skills.
 
-RULES (mandatory):
-1. ONE FORCING FUNCTION PER ITERATION — name the concrete trigger in your iteration summary. Make no change you cannot tie to a named trigger; marginal homogenization is not a trigger.
-2. HALT HONESTLY — the moment an honest search finds no defensible trigger, report that the stop condition is met. Halting is the correct outcome; never invent a trigger to keep going.
-3. MEASURE FRESH — product-file changes (skills/ agents/ hooks/ shared/ conventions/ templates/) are not live in a session until you run `claude plugin update harness@harness`; measure only on a session started after that. docs/, .claude/settings.json, CLAUDE.md, README.md are live immediately.
-4. Honor the latest harness conventions, templates, and ${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md; keep instructions minimal and precise; record decisions as stances under docs/stances/. One coherent, committed change per iteration.
-5. Start by reading docs/AGENTS.md, and this run's notes.md for what earlier iterations already built or deferred.
+RULES — full text and rationale in docs/gnhf/_rules.md (read and follow it):
+1. ONE FORCING FUNCTION PER ITERATION — name the concrete trigger in your summary.
+2. HALT HONESTLY — never invent a trigger; the honest stop is the correct outcome.
+3. MEASURE FRESH — product files aren't live until `claude plugin update harness@harness`.
+4. Honor conventions/templates/authoring-standard; one coherent, committed change per iteration.
+5. START BY READING docs/AGENTS.md and this run's notes.md before acting.
+6. DOGFOOD VIA THE FITTING SKILL — follow a fitting skill's procedure instead of hand-rolling; skip only when none fits.

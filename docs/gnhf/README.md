@@ -1,8 +1,11 @@
 # gnhf prompt library
 
 Reusable objective prompts for running [gnhf](https://github.com/kunchenguid/gnhf) against this
-repo. Each file is a **paste-ready, self-contained** gnhf objective (gnhf consumes one prompt string
-per run and does not compose files at runtime, so the shared rules are inlined into every prompt).
+repo. gnhf consumes one prompt string per run and does not compose files itself — but the running
+agent reads sibling files at runtime (the same way it reads `docs/AGENTS.md`), so each objective
+links the shared mandatory rules ([_rules.md](_rules.md)) instead of restating them, and the
+umbrella links the four phase objectives instead of re-defining them. Each file stays small and
+precise; the shared text lives in exactly one place.
 
 gnhf loops fresh agent sessions, each reading `notes.md` (accumulated from the run's prior
 iterations) for cross-iteration memory. The agent emits gnhf's built-in structured result
@@ -40,23 +43,15 @@ Each invocation expands to `gnhf --current-branch --stop-when "<default conditio
 ## The shared discipline
 
 These prompts split self-improvement by **forcing function** — each goal carries its own external
-pressure that generates real work — and make halting honest rather than optional. Every prompt
-inlines the same rules:
-
-1. **One forcing function per iteration.** The agent names its concrete trigger in the iteration
-   `summary`. A change that cannot be tied to a named trigger is not made; marginal homogenization
-   is not a trigger.
-2. **Halt honestly.** The moment an honest search finds no defensible trigger, the agent reports
-   that the run's `--stop-when` condition is met. Halting is the correct outcome — never invent a
-   trigger to keep going.
-3. **Measure against a fresh plugin cache.** Product-file changes (`skills/`, `agents/`, `hooks/`,
-   `shared/`, `conventions/`, `templates/`) are invisible to a running session until
-   `claude plugin update harness@harness`. Dogfood files (`docs/`, the repo's `.claude/settings.json`,
-   `CLAUDE.md`, `README.md`) are live immediately. See
-   [../stances/measure-product-changes-via-plugin-update.md](../stances/measure-product-changes-via-plugin-update.md).
-4. **One coherent change per iteration, committed.** Honor the latest harness conventions, templates,
-   and `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`; keep instructions minimal and precise;
-   record decisions as stances.
+pressure that generates real work — and make halting honest rather than optional. Every objective
+obeys the same mandatory rules, single-sourced in [_rules.md](_rules.md): one forcing function per
+iteration, halt honestly, measure against a fresh plugin cache (product files under `skills/`,
+`agents/`, `hooks/`, `shared/`, `conventions/`, `templates/` are invisible until
+`claude plugin update harness@harness`; `docs/`, `.claude/settings.json`, `CLAUDE.md`, `README.md`
+are live immediately — see
+[../stances/measure-product-changes-via-plugin-update.md](../stances/measure-product-changes-via-plugin-update.md)),
+honor the latest conventions/templates/authoring-standard, and make one coherent committed change
+per iteration.
 
 ## Umbrella phase order
 

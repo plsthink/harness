@@ -35,7 +35,7 @@ declare -A conds=(
   [dogfood]="every harness skill has been driven against a representative fixture since the last product change and none stumbles"
   [upstream]="every integration source is re-diffed current and every remaining upstream delta is deliberately rejected"
   [capability]="the pipeline covers every repeatable in-scope task and remaining gaps are deliberately deferred"
-  [coherence]="check-refs and the dev-script self-tests pass and no genuine internal inconsistency remains"
+  [coherence]="check-refs and the dev-script self-tests pass and no genuine internal inconsistency or authoring-standard leanness violation remains"
   [umbrella]="a full cycle through all four phases produced no change"
 )
 
