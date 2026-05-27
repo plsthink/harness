@@ -14,6 +14,8 @@ this and works the repo; harness skills honor it rather than re-encode navigatio
 6. **Provenance:** `docs/integrations/<src>.md` — upstream influence records (re-diff protocol).
 7. Work substrate: `docs/work/<feature>/` — per-feature PRD + issues + learnings.
 8. Authoring a skill/agent: `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`.
+9. Self-improving the harness via gnhf: `docs/gnhf/README.md` — operator prompt library (one
+   objective per goal + an unattended umbrella). Dev tooling, not shipped product.
 
 ## Config
 
