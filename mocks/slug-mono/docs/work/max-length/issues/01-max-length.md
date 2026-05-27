@@ -30,7 +30,8 @@ None.
 - _(AI) Authored as a harness multi-package mock fixture work item — a concrete ready-for-agent
   contract for dogfooding execute-issue/tdd against a monorepo. Fits the zero-dep / zero-install /
   npm-workspaces constraints; the slice deliberately cuts both `core` and `cli`._
-- _(AI) Done via the tdd red-green loop: `slugify(text, max)` cap in `core` + `--max-length` argv
-  parse in `cli`, each driven RED→green by a per-package `node --test` case. `npm test` is 9/9 from a
-  fresh zero-install checkout — slug-mono's first completed work item, the monorepo parallel of
-  todo-cli's iter-9 dogfood._
+- _(AI) Status:done reflects the feature shipping implemented as fixture content (`slugify(text,
+  max)` cap in `core` + `--max-length` argv parse in `cli`, with a per-package `node --test` case
+  each) — fixture intent, not a record that a skill was driven against it. `npm test` is green from a
+  fresh zero-install checkout. The first skill actually run to completion against slug-mono was the
+  isSlug + `--check` tdd slice; see `docs/work/learnings/tdd.md` and the mocks/README note._

@@ -21,3 +21,11 @@ test('run rejects --max-length with a missing or non-numeric value', () => {
   assert.throws(() => run(['--max-length']), /usage/);
   assert.throws(() => run(['--max-length', 'abc', 'Hello']), /usage/);
 });
+
+test('run --check reports a canonical Slug as valid', () => {
+  assert.strictEqual(run(['--check', 'hello-world']), 'valid');
+});
+
+test('run --check reports non-canonical input as invalid', () => {
+  assert.strictEqual(run(['--check', 'Hello', 'World']), 'invalid');
+});

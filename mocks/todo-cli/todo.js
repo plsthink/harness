@@ -48,6 +48,13 @@ function remove(tasks, id) {
   tasks.splice(idx, 1);
 }
 
+function edit(tasks, id, text) {
+  if (!text) throw new Error('edit: text required');
+  const task = tasks.find((t) => t.id === id);
+  if (!task) throw new Error(`edit: no task #${id}`);
+  task.text = text;
+}
+
 function clearDone(tasks) {
   let removed = 0;
   for (let i = tasks.length - 1; i >= 0; i--) {
@@ -85,6 +92,12 @@ function run(argv, file) {
       save(file, tasks);
       return `removed #${rest[0]}`;
     }
+    case 'edit': {
+      const [id, ...words] = rest;
+      edit(tasks, Number(id), words.join(' '));
+      save(file, tasks);
+      return `edited #${id}`;
+    }
     case 'clear': {
       const removed = clearDone(tasks);
       save(file, tasks);
@@ -98,7 +111,7 @@ function run(argv, file) {
   }
 }
 
-module.exports = { load, save, add, done, remove, clearDone, format, run, storePath };
+module.exports = { load, save, add, done, remove, clearDone, edit, format, run, storePath };
 
 if (require.main === module) {
   try {

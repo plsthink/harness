@@ -10,7 +10,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { load, save, add, done, remove, clearDone, format, run, storePath } = require('../todo.js');
+const { load, save, add, done, remove, clearDone, edit, format, run, storePath } = require('../todo.js');
 
 function tmpFile() {
   return path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'todo-')), 'store.json');
@@ -95,6 +95,24 @@ test('run clear with nothing done is a no-op save reporting no completed tasks',
   save(file, [{ id: 1, text: 'a', done: false }]);
   assert.equal(run(['clear'], file), 'no completed tasks');
   assert.deepEqual(load(file), [{ id: 1, text: 'a', done: false }]);
+});
+
+test('edit sets the matching task text, leaves id and done untouched, returns nothing', () => {
+  const tasks = [{ id: 1, text: 'old', done: true }];
+  assert.equal(edit(tasks, 1, 'new'), undefined);
+  assert.deepEqual(tasks[0], { id: 1, text: 'new', done: true });
+});
+
+test('edit rejects unknown ids and empty text', () => {
+  assert.throws(() => edit([{ id: 1, text: 'x', done: false }], 99, 'y'), /edit: no task #99/);
+  assert.throws(() => edit([{ id: 1, text: 'x', done: false }], 1, ''), /edit: text required/);
+});
+
+test('run edit rewrites a task text, saves, and reports the id', () => {
+  const file = tmpFile();
+  save(file, [{ id: 2, text: 'buy milk', done: false }]);
+  assert.equal(run(['edit', '2', 'buy', 'oat', 'milk'], file), 'edited #2');
+  assert.deepEqual(load(file), [{ id: 2, text: 'buy oat milk', done: false }]);
 });
 
 test('storePath honours $TODO_FILE override', () => {

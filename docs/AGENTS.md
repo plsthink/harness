@@ -12,7 +12,8 @@ this and works the repo; harness skills honor it rather than re-encode navigatio
    (global) + `docs/conventions/INDEX.md` (project; wins on conflict). Both start empty.
 5. **On a decision:** read/append `docs/stances/<slug>.md`.
 6. **Provenance:** `docs/integrations/<src>.md` — upstream influence records (re-diff protocol).
-7. Work substrate: `docs/work/<feature>/` — per-feature PRD + issues + learnings.
+7. Work substrate: `docs/work/<feature>/` — per-feature PRD + issues; per-skill learnings sit
+   alongside at `docs/work/learnings/<skill>.md` (a skill-keyed sibling, not inside a feature dir).
 8. Authoring a skill/agent: `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`.
 9. Self-improving the harness via gnhf: `docs/gnhf/README.md` — operator prompt library (one
    objective per goal + an unattended umbrella). Dev tooling, not shipped product.

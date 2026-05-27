@@ -1,6 +1,7 @@
 # Onboarding gate — the step-0 behavior-config check
 
-Cited by: `execute-issue`, `tdd`, `issues`, `prd`, `triage`. The single source of the
+Cited by: `execute-issue`, `tdd`, `issues`, `prd`, `triage`, `onboard` (the first five run the gate;
+`onboard` is the exempt bootstrap skill that cites it to declare it is **not** self-gated). The single source of the
 config-consuming gate every spine skill runs before it does anything else.
 
 ## The check

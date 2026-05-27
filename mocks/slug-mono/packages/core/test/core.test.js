@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { slugify } = require('../index.js');
+const { slugify, isSlug } = require('../index.js');
 
 test('slugify lowercases and dashes spaces', () => {
   assert.strictEqual(slugify('Hello World'), 'hello-world');
@@ -24,4 +24,18 @@ test('slugify leaves the Slug unchanged when max >= its length or is absent', ()
   assert.strictEqual(slugify('Hello World'), 'hello-world');
   assert.strictEqual(slugify('Hello World', 11), 'hello-world');
   assert.strictEqual(slugify('Hello World', 99), 'hello-world');
+});
+
+test('isSlug accepts a canonical Slug', () => {
+  assert.strictEqual(isSlug('hello-world'), true);
+});
+
+test('isSlug rejects non-canonical text (uppercase, spaces, edge dashes)', () => {
+  assert.strictEqual(isSlug('Hello World'), false);
+  assert.strictEqual(isSlug('-hello-'), false);
+});
+
+test('isSlug rejects empty string and non-string without throwing', () => {
+  assert.strictEqual(isSlug(''), false);
+  assert.strictEqual(isSlug(42), false);
 });

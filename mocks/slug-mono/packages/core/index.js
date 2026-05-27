@@ -16,4 +16,11 @@ function slugify(text, max) {
   return slug;
 }
 
-module.exports = { slugify };
+// isSlug(text) -> boolean: true iff `text` is already a canonical Slug. A string is a valid Slug
+// exactly when slugifying it changes nothing and it is non-empty; non-string input is not a Slug
+// (returns false rather than throwing).
+function isSlug(text) {
+  return typeof text === 'string' && text.length > 0 && text === slugify(text);
+}
+
+module.exports = { slugify, isSlug };

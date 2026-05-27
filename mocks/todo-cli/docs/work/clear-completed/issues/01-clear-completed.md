@@ -22,5 +22,7 @@ ops so tests drive it in-process.
 None.
 
 ## Comments
-- _(AI) Authored as a harness mock fixture work item — a concrete ready-for-agent contract for
-  exercising execute-issue/tdd against todo-cli. Fits the zero-dep / single-file constraints._
+- _(AI) Authored as a harness mock fixture work item, shipped already-implemented (Status: done from
+  the authoring commit) — a done-state example, NOT a red→green driveable contract: it has no RED
+  step, so it can't exercise tdd's red→green gate (that role is edit-task's). Status: done here is
+  fixture intent, not execution evidence. Fits the zero-dep / single-file constraints._

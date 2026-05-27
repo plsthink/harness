@@ -1,6 +1,6 @@
 # Git workflow — the product git discipline
 
-Cited by: `execute-issue`, the `builder` agent, and any commit-making skill. The single source for
+Cited by: `execute-issue`, `issues`, `prd`, `think`, and the `builder` agent (the commit-making skills + agent). The single source for
 the commit grammar (and, in later slices, the land procedure and worktree-path rule). Product —
 reachable from any project the harness drives, not dogfood-only. Enforced deterministically by the
 commit-message hook (`${CLAUDE_PLUGIN_ROOT}/hooks/commit-msg-guard.js` →
