@@ -21,6 +21,7 @@ becomes a routed finding, never a code edit here.
    Find: duplication (incl. the `AGENTS.md` entrypoint restating the `CONTEXT` glossary / `PROJECT`
    constraints instead of routing to them); doc↔code drift; **stances to merge/dedupe**; broken `see stance: <slug>`
    refs; orphaned/stale glossary terms (move retired ones to `_Avoid_`); PROJECT/CONTEXT bloat;
+   non-linear bifurcation (see `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`'s linear-reading rule);
    a per-package vision (drift — vision is a root singleton); durable reversals living as logs
    instead of `Rejected:`/hard-constraints/`_Avoid_`.
 2. **Reconcile conventions** against `${CLAUDE_PLUGIN_ROOT}/conventions` — see

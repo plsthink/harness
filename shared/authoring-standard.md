@@ -29,6 +29,13 @@ only lean if each unit is. Hard rules:
 - **Own refs by relative path.** A skill cites its OWN bundled files relatively:
   `[x.md](references/x.md)`. Cross-product plugin resources (`shared/`, `conventions/`, `hooks/`)
   use the `${CLAUDE_PLUGIN_ROOT}` form.
+- **Linear — one-pass reading.** A unit reads A→Z in a single forward pass: a passage must not
+  depend on information introduced only later, nor force a re-read of an earlier passage with
+  knowledge gained later. Test — a violation lets you **name the specific later location** the
+  passage depends on; if you can't name it, it is not a defect (reordering for taste is not a
+  violation). Sanctioned cross-file cites (cite-don't-restate, one-level-deep) are **not**
+  bifurcation — this rule scopes to ordering *within one reading unit*. Applies to any reading
+  unit, docs included; the doc surface cites this rule via `docs-review`'s lens.
 
 ## Description budget
 
