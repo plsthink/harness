@@ -14,10 +14,10 @@ passed against it travel together in git history. See stance:
   so a mock's internal docs are not validated as harness product.
 - A mock + the harness version that passed against it travel together in git history — the fixture
   is a regression test.
-- Each fixture follows the `_base/` + `_overlays/<variant>/` layout: stage by copying `_base/` to a
-  scratch dir, then recursively merging the named overlay on top. `_overlays/clean/` is the
-  no-op overlay (un-onboarded starting state); `_overlays/onboarded/` adds the `docs/` skeleton +
-  behavior-config block.
+- Each fixture follows the `_base/` + `_overlays/<variant>/` layout: stage with
+  `docs/scripts/stage-mock.sh` (copies `_base/` then merges the named overlay on top — the single
+  source of that dotfile-inclusive merge). `_overlays/clean/` is the no-op overlay (un-onboarded
+  starting state); `_overlays/onboarded/` adds the `docs/` skeleton + behavior-config block.
 
 ## Fixtures
 - **url-shorten/** — dependency-free single-file-ish Node CLI URL shortener. Single-context shape.
@@ -34,10 +34,16 @@ staged copy reads; this top-level `mocks/README.md` is the harness-maintainer vi
 
 ## Usage
 
-Driving a single skill manually against a mock:
-1. Copy `mocks/<name>/_base/` to a scratch dir (e.g. `/tmp/mock-run/`).
-2. Merge `mocks/<name>/_overlays/<variant>/` on top (overlay files add or replace by name).
-3. `cd` into the scratch dir and invoke the skill exactly as a fresh agent would.
+Driving a single skill manually against a mock — stage it, then invoke the skill in the staged copy
+exactly as a fresh agent would:
+
+```
+cd "$(docs/scripts/stage-mock.sh <name> <variant>)"   # e.g. stage-mock.sh url-shorten clean
+```
+
+`stage-mock.sh` copies `_base/` then merges `_overlays/<variant>/` on top into a fresh scratch dir
+(or a `[dest]` you pass) and prints the staged path — so the merge (dotfiles included) is identical
+every run. Then drive the skill from that dir.
 
 ## Caveat
 A mock has no `git remote` of its own (it lives in the harness repo), so `onboard` step 1's

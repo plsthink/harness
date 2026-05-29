@@ -58,6 +58,12 @@
             "command": "fp=$(grep -o '\"file_path\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | head -1); case \"$fp\" in *reap-done-features*) out=$(bash \"$CLAUDE_PROJECT_DIR/docs/scripts/reap-done-features.test.sh\" 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; };; esac",
             "timeout": 15,
             "statusMessage": "Self-testing reaper..."
+          },
+          {
+            "type": "command",
+            "command": "fp=$(grep -o '\"file_path\"[[:space:]]*:[[:space:]]*\"[^\"]*\"' | head -1); case \"$fp\" in *stage-mock.sh*|*stage-mock.test.sh*) out=$(bash \"$CLAUDE_PROJECT_DIR/docs/scripts/stage-mock.test.sh\" 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; };; esac",
+            "timeout": 15,
+            "statusMessage": "Self-testing mock stager..."
           }
         ]
       }
