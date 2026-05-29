@@ -28,7 +28,7 @@ exactly — don't drift to "component/service/boundary".
    yet.** Ask: "which would you like to explore?"
 3. **Grill the chosen candidate.** Walk the design tree (constraints, deepened-module shape, what
    sits behind the seam, surviving tests). Categorise dependencies + testing strategy via
-   [DEEPENING.md](references/DEEPENING.md); design the interface twice via parallel subagents per
+   [DEEPENING.md](references/DEEPENING.md); design competing interfaces via parallel subagents per
    [INTERFACE-DESIGN.md](references/INTERFACE-DESIGN.md). **Inline doc side-effects:** new concept →
    add to `CONTEXT.md`; fuzzy term sharpened → update it; user rejects with a load-bearing reason →
    offer a stance so future reviews don't re-suggest it (`${CLAUDE_PLUGIN_ROOT}/shared/stances-doc.md`,
