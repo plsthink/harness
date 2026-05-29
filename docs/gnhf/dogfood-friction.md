@@ -4,7 +4,7 @@ PROCEDURE: Pick a skill+fixture pairing not yet exercised since the last product
 
 FORCING FUNCTION: the specific observed stumble, e.g. "onboard step 3 left template <!-- --> comments in url-shorten's written docs" or "execute-issue reviewer passed a vacuous green on cms-mono". Name it concretely in your iteration summary.
 
-HALT: when every skill has been driven against a representative fixture since the last product change and none stumbles, this goal is exhausted — report that the run's configured stop condition is met, and do not invent a stumble to keep going.
+HALT: once every skill, since the last product change, has been re-exercised against a representative fixture without a stumble surfacing, this goal is exhausted — report that the run's configured stop condition is met, and do not invent a stumble to keep going.
 
 RULES — full text and rationale in docs/gnhf/_rules.md (read and follow it):
 1. ONE FORCING FUNCTION PER ITERATION — name the concrete trigger in your summary.

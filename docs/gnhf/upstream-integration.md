@@ -4,7 +4,7 @@ PROCEDURE: Pick an integration source under docs/integrations/ (caveman.md, comp
 
 FORCING FUNCTION: the specific upstream delta, e.g. "mattpocock's <pattern> postdates our last re-diff and improves <skill>" or "caveman upstream changed <X>; we reject because <reason>". Name the source and the delta in your iteration summary.
 
-HALT: when every integration source is re-diffed current and the remaining upstream deltas are already deliberately rejected (recorded), this goal is exhausted — report that the run's configured stop condition is met, and do not adopt an upstream change you would reject just to produce a commit.
+HALT: once every integration source has been re-diffed to current and any surviving upstream delta is a deliberate, recorded rejection, this goal is exhausted — report that the run's configured stop condition is met, and do not adopt an upstream change you would reject just to produce a commit.
 
 RULES — full text and rationale in docs/gnhf/_rules.md (read and follow it):
 1. ONE FORCING FUNCTION PER ITERATION — name the concrete trigger in your summary.
