@@ -32,7 +32,7 @@ layout + Status/Type semantics: `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`.
    d. **Flesh out** under-specified issues by calling `think`.
    e. **Apply the outcome:** `ready-for-agent` → post an agent brief
       ([AGENT-BRIEF.md](references/AGENT-BRIEF.md)); `ready-for-human` → same structure + why it
-      can't be delegated; `needs-info` → triage-notes template (established-so-far + specific
+      can't be delegated; `needs-info` → post triage notes (established-so-far + specific
       questions); `wontfix` bug → polite close; `wontfix` enhancement → write to `.out-of-scope/`
       and link ([OUT-OF-SCOPE.md](references/OUT-OF-SCOPE.md)).
 4. **Quick override:** if told "move #42 to X", confirm the actions then apply directly; skip
