@@ -36,8 +36,8 @@ bootstrap skill — not self-gated (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gat
    - `docs/AGENTS.md` (from `templates/docs/AGENTS.md`) — navigation protocol + the filled
      `<!-- HARNESS-CONFIG-START -->` block carrying **every** schema key's recorded value (this is
      what `check-onboarded.sh` reads; an incomplete block reports *stale*).
-   - thin `CLAUDE.md` → `docs/AGENTS.md` pointer (never create AGENTS.md root-file if CLAUDE.md
-     exists, or vice versa — edit the one present; if neither, ask which).
+   - thin `CLAUDE.md` (from `templates/CLAUDE.md`) → `docs/AGENTS.md` pointer (never create AGENTS.md
+     root-file if CLAUDE.md exists, or vice versa — edit the one present; if neither, ask which).
    - seed `docs/` skeleton: PROJECT/CONTEXT + empty `docs/conventions/INDEX.md` (delta over
      harness globals, starts empty). **If multi:** also CONTEXT-MAP + a per-package
      `packages/<pkg>/docs/CONTEXT.md` glossary stub for each package the spine routes to (so the
