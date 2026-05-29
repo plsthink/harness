@@ -1,6 +1,6 @@
 {
   "name": "harness",
-  "description": "Personally-owned, multi-project Claude Code harness. Bundles the think/prd/issues/tdd pipeline, the execute-issue worktree loop, owned investigator/builder/reviewer agents, shared filesystem-contract conventions, and a thin owned caveman mode.",
+  "description": "Personally-owned, multi-project Claude Code harness. Bundles the think/prd/issues/tdd pipeline, the execute-issue worktree loop, owned investigator/builder/reviewer/verifier agents, shared filesystem-contract conventions, and a thin owned caveman mode.",
   "author": {
     "name": "plsthink"
   },
