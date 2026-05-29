@@ -18,7 +18,7 @@ PRD/plan → `docs/work/<feature>/issues/NN-slug.md` tracer-bullet slices. Paren
 2. **Explore the codebase** (if not already). Titles/descriptions use the **domain glossary**
    vocabulary; respect stances in the touched area.
 3. **Draft vertical slices**, each tagged **HITL** or **AFK** ([slicing.md](references/slicing.md)).
-4. **Quiz the user.** Present a numbered breakdown: Title / Type (HITL|AFK) / Blocked-by / user
+4. **Quiz the user.** Present a numbered breakdown: Title / HITL or AFK / Blocked-by / user
    stories covered. Ask: granularity right? deps correct? merge or split any? HITL/AFK correct?
    Iterate until approved.
 5. **Run the "thought-enough" checklist** (`${CLAUDE_PLUGIN_ROOT}/shared/triage-labels.md`) before
