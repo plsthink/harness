@@ -1,31 +1,43 @@
 # mocks/ — harness test-project fixtures
 
 Throwaway-but-committed target repos for exercising harness skills end-to-end against real-ish
-code. See stance: `docs/stances/mock-projects-home.md`.
+code. The corpus is how harness behavior is regression-tested: a mock + the harness version that
+passed against it travel together in git history. See stance:
+`docs/stances/mock-projects-home.md`.
 
 ## Rules
 - Each mock is `mocks/<name>/` with its **own** `docs/` skeleton — its `docs/` shadows the harness
   dogfood root via the nearest-`docs/` walk, so a skill run with cwd inside the mock never reads
-  the harness's own `docs/`. Always `cd mocks/<name>` before driving a skill against it.
+  the harness's own `docs/`. Always `cd mocks/<name>` (or `cd` into a staged copy) before driving a
+  skill against it.
 - Plain files, no nested `.git`. `mocks/` is outside the dirs `docs/scripts/check-refs.sh` scans,
   so a mock's internal docs are not validated as harness product.
 - A mock + the harness version that passed against it travel together in git history — the fixture
   is a regression test.
+- Each fixture follows the `_base/` + `_overlays/<variant>/` layout: stage by copying `_base/` to a
+  scratch dir, then recursively merging the named overlay on top. `_overlays/clean/` is the
+  no-op overlay (un-onboarded starting state); `_overlays/onboarded/` adds the `docs/` skeleton +
+  behavior-config block.
 
 ## Fixtures
-- **todo-cli/** — dependency-free single-file Nodejs todo CLI (`todo.js` + own `docs/` skeleton).
-  Use it to drive think/prd/issues/tdd/diagnose; to re-test the `onboard` skill, copy it to a
-  throwaway dir and strip its `docs/` first.
-- **slug-mono/** — dependency-free npm-workspaces monorepo (`packages/core` + `packages/cli`). The
-  **multi-package** counterpart to todo-cli: it carries a root glossary, a `docs/CONTEXT-MAP.md`
-  spine, and per-package `packages/<pkg>/docs/CONTEXT.md` glossaries, so it exercises the
-  multi-package docs layout (and `check-refs.sh`'s `packages/*/docs` coverage) that a
-  single mock cannot. Carries a `docs/work/max-length/` item (Status: done) whose slice cut both
-  packages — a canonical PRD+issue **shaped to exercise** the prd/issues planning pipeline and
-  execute-issue's **inner build loop** (decompose → builder/tdd → reviewer → verifier) against a
-  monorepo, but NOT its git mechanics (worktree/land/reap), which cannot isolate per-mock; see
-  Caveat. `Status: done` is fixture intent, not execution evidence — the first skill actually driven
-  to completion here was tdd (`docs/work/learnings/tdd.md`).
+- **url-shorten/** — dependency-free single-file-ish Node CLI URL shortener. Single-context shape.
+  Use for skill exercises that don't need a multi-package surface (the bulk of them).
+- **cms-mono/** — npm-workspaces monorepo with `@cms-mono/{core,server,cli}`. The **multi-package**
+  counterpart: carries a root glossary, a `docs/CONTEXT-MAP.md` spine, and per-package
+  `packages/<pkg>/docs/CONTEXT.md` glossaries, so it exercises the multi-package docs layout
+  (and `check-refs.sh`'s `packages/*/docs` coverage) that no single-context mock can.
+- **task-runner/** — single-context Node library with a plugin API. Same shape as url-shorten but
+  with a deliberately shallow plugin loader in `_overlays/shallow/` for deepening exercises.
+
+Each fixture's own `README.md` (per-mock or per-`_base/`) is the project-level entrypoint a
+staged copy reads; this top-level `mocks/README.md` is the harness-maintainer view of the corpus.
+
+## Usage
+
+Driving a single skill manually against a mock:
+1. Copy `mocks/<name>/_base/` to a scratch dir (e.g. `/tmp/mock-run/`).
+2. Merge `mocks/<name>/_overlays/<variant>/` on top (overlay files add or replace by name).
+3. `cd` into the scratch dir and invoke the skill exactly as a fresh agent would.
 
 ## Caveat
 A mock has no `git remote` of its own (it lives in the harness repo), so `onboard` step 1's

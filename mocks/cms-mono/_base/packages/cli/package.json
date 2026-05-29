@@ -1,0 +1,9 @@
+{
+  "name": "@cms-mono/cli",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "bin": {
+    "cms-build": "index.js"
+  }
+}

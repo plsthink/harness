@@ -1,0 +1,2 @@
+cms-mono _clean overlay: empty. Stages _base/ unchanged — no docs/, no plants. Marks the "source
+only, no harness-managed docs" scenario for exercising onboard from a greenfield state.
