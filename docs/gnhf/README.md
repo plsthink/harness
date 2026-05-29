@@ -57,5 +57,5 @@ plugin update.
 `dogfood → upstream → capability → coherence`. Dogfood leads (cheapest discovery, fixtures ready,
 surfaces the gaps that seed later phases); upstream precedes capability (integrate external before
 building internal, so capability does not reinvent upstream); coherence is last because it operates
-on the churn the prior phases produce and is self-limiting — the natural terminator. The umbrella's
-`--stop-when` fires when a full cycle through all four phases produces no change.
+on the churn the prior phases produce and is self-limiting — the natural terminator. The umbrella
+halts on a full dry cycle — one iteration that traverses all four phases finding no trigger in any.
