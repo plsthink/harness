@@ -49,12 +49,13 @@ handles a wrong *implementation*; this handles a wrong *spec*.
   cycle.** If an amended spec still fails on re-dispatch (the re-dispatched builder→gate loop exhausts
   again on the *same* spec-level fault), **escalate** rather than re-amend repeatedly. One autonomous
   amend, then the next failure is a HITL escalation.
-- **Recording / revertability.** Each amendment is a **distinct, labeled git commit** editing
+- **Recording / revertability.** Each amendment is a **distinct git commit** editing
   `docs/work/<feature>/` (the issue and/or PRD) **inside the per-issue worktree** (the worktree is an
-  exclusive lock → no concurrent-edit conflict). Label it distinctly — an **`amend-spec:` commit** —
-  kept **separate from the implementation commits**, so the audit trail is clean. The original
-  `ready-for-agent` spec and every `amend-spec:` amendment then live in the commit graph: the whole
-  backward edge is **auditable and revertable from git history**.
+  exclusive lock → no concurrent-edit conflict), carrying the spec-amendment marker from
+  `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` "Spec-amendment variant" (the `amend spec` subject
+  prefix and its `git log --grep` guarantee) and kept **separate from the implementation commits**,
+  so the audit trail is clean. The original `ready-for-agent` spec and every amendment then live in
+  the commit graph: the whole backward edge is **auditable and revertable from git history**.
 
 ## Who runs the tests
 The `builder` agent has **Bash** (scoped) and runs the project's `test-command` itself (never a
