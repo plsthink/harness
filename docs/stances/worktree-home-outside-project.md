@@ -7,7 +7,7 @@ target repo and its parent dir stay pristine. This is **product** behavior (it r
 project) so the rule lives in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`, not under `docs/`.
 
 **Why:** A worktree placed inside the repo would be walked by the nearest-`docs/` resolution and
-traversed by tree-scanning hooks (`check-refs.sh`, the mock `PostToolUse` gate) — the exact hazard
+traversed by tree-scanning hooks (`check-refs.sh`) — the exact hazard
 `mock-projects-home` exists to neutralize — and would need a gitignore entry to keep `git status`
 clean. A sibling dir avoids the tree but clutters the parent, assumes the parent is writable, and
 collides when two repos share a name. A central home dodges all three: out of every scan path, no
