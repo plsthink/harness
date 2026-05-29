@@ -5,7 +5,7 @@ self-test (`docs/scripts/<name>.test.sh`) beside it. The test is itself path-gat
 `PostToolUse` hook — editing the script (or its test) triggers its regression test in the same
 turn — while unrelated edits stay fast and silent. To stay testable a script takes an optional
 `ROOT`/fixture arg so the test runs against throwaway fixtures, never the real tree. Covered so far:
-`check-refs.sh`, `templates/scaffold.sh`, and the two caveman hooks.
+the path-gated self-test entries in the `PostToolUse` hook of `.claude/settings.json`.
 
 **Why:** A blocking checker fails *asymmetrically* — a silent detection regression either spams
 false-positives (blocks every edit) or goes blind (guard disabled), and neither surfaces until much
