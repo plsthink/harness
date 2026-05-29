@@ -1,8 +1,7 @@
 # Onboard — migrating an ADR-style project
 
-Loaded by `onboard` step 5 **only when step 1 detected a prior ADR-style layout** (`docs/adr/NNNN-*.md`,
-`docs/agents/`, `.scratch/`, per-package `CONTEXT.md` *not* under `docs/`). Make these moves
-explicit, not silent.
+Loaded by `onboard` step 5 **only when step 1 detected a prior ADR-style layout** (step 1 lists the
+detection signals). Make these moves explicit, not silent.
 
 - **Per-package glossaries** go under `packages/<pkg>/docs/CONTEXT.md`, not `packages/<pkg>/CONTEXT.md`
   (`${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`); repoint `CONTEXT-MAP.md` after moving.
