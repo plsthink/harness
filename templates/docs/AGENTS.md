@@ -15,8 +15,8 @@ harness skills honor it rather than re-encode navigation (single-source).
 ## Config
 
 The parseable block below is what `${CLAUDE_PLUGIN_ROOT}/scripts/check-onboarded.sh` reads (keys
-must sit inside the START/END markers); the human-readable gloss follows each key. The START/END
-markers are the parseable contract — keep them; strip only the authoring hint comments.
+must sit inside the START/END markers); the human-readable gloss follows each key.
+<!-- Keep the START/END markers (the parseable contract); strip only the authoring hint comments. -->
 
 <!-- HARNESS-CONFIG-START -->
 context: {{CONTEXT_MODE}}
