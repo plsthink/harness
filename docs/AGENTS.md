@@ -32,7 +32,8 @@ verify-method: bash docs/scripts/check-refs.sh
 
 - **context:** single — no packages; the glossary lives in `docs/CONTEXT.md`.
 - **tdd-applies:** false — the harness is prose/skill authoring with no app or unit-test suite;
-  its only tests are targeted dev-script self-tests written ad hoc (the reviewer's test-first check
+  its only tests are targeted dev-script self-tests written ad hoc (with tdd off the reviewer's
+  test-first gate is inert; its false-green check — that any tests which do run actually executed —
   still applies per slice). A blanket red→green-per-task gate would be wrong for doc/skill slices.
 - **test-command:** the dev-script self-tests (`bash docs/scripts/<name>.test.sh`) — run on demand,
   also auto-run via the PostToolUse path-gate in `.claude/settings.json`.
