@@ -31,8 +31,11 @@ references/, no `model:` frontmatter, terse output, detail cited from `shared/`)
    agents-generic-floor).
 3. **Keep it thin.** Any detail that would bloat the prompt → cite `${CLAUDE_PLUGIN_ROOT}/shared/...`.
    No `model:` frontmatter (inherit parent).
-4. **Wire dispatch:** note which skill(s) dispatch it (e.g. `execute-issue`, `architecture`) and
-   how it's selected (floor vs project-local override).
+4. **Wire dispatch:** auto-dispatch is keyed to a floor ROLE NAME — a project-local agent is picked
+   only when its filename overrides a floor role (`builder`/`reviewer`/`verifier` for `execute-issue`,
+   `investigator` for `architecture`); a net-new name is reachable only by explicit @-mention. So for
+   AFK auto-dispatch, name the file after the floor role it replaces. Note which skill(s) dispatch it
+   + whether it's the floor or a project-local override.
 
 ## Pipeline
 - Reads:  `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`; `templates/agent.md`
