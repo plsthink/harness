@@ -1,8 +1,5 @@
 # {{FEATURE}} — PRD
 
-<!-- Synthesised from conversation. Vocabulary from the glossary.
-     No file paths / code. No Status (a per-issue field). Publish when the design has converged. -->
-
 ## Problem
 {{PROBLEM}}
 

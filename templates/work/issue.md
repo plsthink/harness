@@ -1,16 +1,15 @@
 # {{NN}} — {{SLUG}}
 
-Status: {{STATUS}}   <!-- see triage-labels.md state roles -->
-Type: {{TYPE}}       <!-- bug|enhancement -->
+Status: {{STATUS}}
+Type: {{TYPE}}
 
 ## What to build
-{{WHAT}}  <!-- tracer-bullet vertical slice: cuts all layers, demoable -->
+{{WHAT}}
 
 ## Acceptance criteria
 - {{CRITERION}}
 
 ## Blocked by
-- {{DEP}}  <!-- issue numbers, dependency order -->
+- {{DEP}}
 
 ## Comments
-<!-- AI-disclaimer on every agent comment -->
