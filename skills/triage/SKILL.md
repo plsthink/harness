@@ -21,8 +21,8 @@ layout + Status/Type semantics: `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`.
 2. **Show what needs attention** (when asked): present buckets oldest-first — untriaged,
    `needs-triage`, `needs-info` with reporter activity since last notes. Counts + one-line summary.
 3. **Triage a specific issue** (a brand-new incoming bug/request has no file yet — first scaffold
-   `docs/work/<feature>/issues/NN-slug.md` from `templates/work/issue.md` at `Status: needs-triage`,
-   then triage it):
+   `docs/work/<feature>/issues/NN-slug.md` from `templates/work/issue.md` via `templates/scaffold.sh`
+   (`STATUS=needs-triage`), then triage it):
    a. **Gather context** — full issue + comments + prior triage notes (don't re-ask resolved
       questions); explore code in glossary vocab respecting stances; read `.out-of-scope/*.md` and
       surface any prior rejection resembling this.
