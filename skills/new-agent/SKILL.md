@@ -20,8 +20,11 @@ references/, no `model:` frontmatter, terse output, detail cited from `shared/`)
    need is good-practice-by-file-type, it's a **convention**, not an agent (see stance:
    conventions-not-personas) — route there instead. If it's project-specific, prefer a
    project-local `.claude/agents/*` override over a global agent.
-2. **Scaffold** from `templates/agent.md` via `templates/scaffold.sh`: name, description (what +
-   "Use when [triggers]"), `tools:` (least-privilege), role one-liner, output shape, thin procedure.
+2. **Scaffold** from `templates/agent.md` via `templates/scaffold.sh` — pass the single-line
+   frontmatter keys (name, description = what + "Use when [triggers]", `tools:` least-privilege).
+   Then **author the body into the file** (role one-liner, output shape, procedure): a multi-line
+   procedure can't be a `scaffold.sh` KEY (single-line `sed`), so write it into the scaffolded file's
+   `## Procedure` rather than passing it as KEY=VALUE.
    **Target:** the global roster (`agents/<name>.md`) or — for a project-specific agent (e.g.
    `onboard` proposing one) — a **project-local** `.claude/agents/<name>.md` dest (same template,
    same `scaffold.sh`, non-overwriting). The project-local file overrides the floor (see stance:
