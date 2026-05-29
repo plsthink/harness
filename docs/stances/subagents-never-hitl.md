@@ -8,9 +8,9 @@ be a **precondition guaranteed before dispatch**. A child hitting missing/ambigu
 **escalates to the orchestrator** (the graded channel of stance: execute-issue-afk-autonomy), never
 guesses and never asks.
 
-**Onboarding is the hard gate** that guarantees those preconditions. Config-consuming skills
-(`execute-issue`, `tdd`, `verifier`, `issues`, `prd`, `triage`) check a **config-completeness
-marker at step 0** and stop with "run `onboard`" when it is absent or stale. Exempt — must run
+**Onboarding is the hard gate** that guarantees those preconditions. The config-consuming spine
+skills check a **config-completeness marker at step 0** and stop with "run `onboard`" when it is
+absent or stale — see `${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md` for the exact gating set. Exempt — must run
 pre-onboarding: `onboard`, `think`, `prototype`, `caveman` (`think` stays in plain interview mode,
 no doc-surgery, until onboarded). Completeness + drift are detected via a **single-source schema of
 required config keys** shipped in `shared/` (a missing key = incomplete *or* stale-by-addition, and
