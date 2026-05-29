@@ -31,11 +31,10 @@ Only these (portable to any project — never invent one):
 ### Scope grammar
 
 OPTIONAL, parenthesized, a lowercase area/domain token matching `[a-z][a-z0-9-]*` — the durable
-part of the system the change touches (e.g. `auth`, `client`, `execute-issue`, `hooks`). Omittable:
-a bare `feat: …` is valid, so you are never forced to invent a domain. Validated by FORMAT (a
-lowercase token starting with a letter), never by membership in any list. NEVER a prd or issue
-number: planning artifacts are deletable, and a number in permanent history would dangle once the
-artifact is gone — so an all-numeric scope like `(123)` or `(01)` is rejected by the format rule.
+part of the system the change touches (e.g. `auth`, `client`, `execute-issue`, `hooks`). Validated
+by FORMAT (a lowercase token starting with a letter), never by membership in any list. NEVER a prd
+or issue number: planning artifacts are deletable, and a number in permanent history would dangle
+once the artifact is gone — so an all-numeric scope like `(123)` or `(01)` is rejected by the format rule.
 
 ### Subject rules
 
@@ -82,8 +81,7 @@ Full order:
 
 Squash is rejected: it would collapse the separate spec-amendment commits (the `amend spec`
 fix-commits) and break their revertable-as-distinct-units guarantee that the execute-issue autonomy
-stance depends on. The builder's one-clean-commit-per-task (above) is what keeps the linear trunk
-meaningful without squashing.
+stance depends on.
 
 ## Worktree home
 

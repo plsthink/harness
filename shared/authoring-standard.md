@@ -1,8 +1,8 @@
 # Authoring standard — every skill, agent, and shared module
 
-Cited by: `new-skill`, `new-agent`. A skill reference, **not** a glob-routed
-convention — it's "how the scaffolders work," not good-practice about edited code. The harness is
-only lean if each unit is. Hard rules:
+Cited by: `new-skill`, `new-agent`, `docs-review`. "How the scaffolders work" (and the rule
+`docs-review` sweeps the doc surface against), not good-practice about edited code. The harness
+is only lean if each unit is. Hard rules:
 
 ## Skills
 

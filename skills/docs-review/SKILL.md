@@ -6,9 +6,8 @@ disable-model-invocation: true
 
 # docs-review
 
-The periodic cross-doc pass (`think` does inline write-time hygiene; this does the sweep `think`
-can't see in-the-moment). **Report-then-apply** like `architecture`. **Docs-only** — any code drift
-becomes a routed finding, never a code edit here.
+**Report-then-apply** like `architecture`. **Docs-only** — any code drift becomes a routed
+finding, never a code edit here.
 
 ## When to fire
 - Manual: docs cleanup / periodic hygiene / convention reconciliation.
@@ -24,11 +23,8 @@ becomes a routed finding, never a code edit here.
    non-linear bifurcation (see `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md`'s linear-reading rule);
    a per-package vision (drift — vision is a root singleton); durable reversals living as logs
    instead of `Rejected:`/hard-constraints/`_Avoid_`.
-2. **Reconcile conventions** against `${CLAUDE_PLUGIN_ROOT}/conventions` — see
-   [reconciliation.md](references/reconciliation.md): project rule ⊆ harness → remove from project
-   (redundant); project rule ⊃ harness → keep the delta, route the project-agnostic part as a
-   promotion candidate (human applies in the harness repo); conflict → mark an explicit `overrides:`
-   or remove as drift.
+2. **Reconcile conventions** against `${CLAUDE_PLUGIN_ROOT}/conventions` — apply the three cases
+   (redundant / delta+promote / conflict→override-or-drift) from [reconciliation.md](references/reconciliation.md).
 3. **Report** all findings grouped (docs / conventions), each with a recommended action. Ask which
    to apply.
 4. **Apply** the approved doc edits + project-side convention removals/overrides. Cross-repo

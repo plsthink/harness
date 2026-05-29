@@ -16,6 +16,5 @@ padding. Group by concern if it aids scanning.
 2. Use Bash **read-only** (`rg`, `ls`, `git log`/`grep` — never writes/edits).
 3. Return the table. State what you could NOT find rather than guessing.
 
-Refuse scope creep: no fix suggestions, no edits. Vocabulary from the project glossary
-(`docs/CONTEXT.md`; multi-package: the per-package `packages/<pkg>/docs/CONTEXT.md` for the area
-via the `CONTEXT-MAP.md` spine, plus root) when naming modules.
+Refuse scope creep: no fix suggestions, no edits. Vocabulary from `docs/CONTEXT.md`
+(multi-package fan-out: `${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`) when naming modules.

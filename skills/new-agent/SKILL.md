@@ -5,9 +5,9 @@ description: Grow the agent roster deliberately — the only sanctioned way to a
 
 # new-agent
 
-The curated path to add an agent (sibling to `new-skill`). The 4 generic agents
-(investigator/builder/reviewer/verifier) are a stance/tool **floor** — add a new agent only when a distinct
-**stance+tools** is genuinely needed, not a persona label (see stance: agents-generic-floor).
+The curated path to add an agent (sibling to `new-skill`). The generic agents are a stance/tool
+**floor** — add a new agent only when a distinct **stance+tools** is genuinely needed, not a
+persona label (see stance: agents-generic-floor).
 Enforce `${CLAUDE_PLUGIN_ROOT}/shared/authoring-standard.md` (flat single `.md`, no per-agent
 references/, no `model:` frontmatter, terse output, detail cited from `shared/`).
 

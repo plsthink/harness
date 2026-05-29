@@ -13,10 +13,8 @@ error. (This cache drifted ~7 commits stale mid-run before anyone noticed.) The 
 the two-roots split: `${CLAUDE_PLUGIN_ROOT}` → cache (needs update); nearest-`docs/` walk → worktree
 (live). Knowing which side a file is on tells you whether measurement costs a plugin-update step.
 
-A `SessionStart` hook (`docs/scripts/check-plugin-fresh.sh`, wired in the repo's `.claude/settings.json`)
-now compares repo HEAD against the installed plugin's pinned SHA and prints a one-line reminder when
-they differ — automating the staleness check that was caught by hand twice. Advisory only (always exits
-0); it does not run the update, so the deliberate dogfooded update step stays manual.
+A `SessionStart` hook (`docs/scripts/check-plugin-fresh.sh`) prints an advisory when stale — detection
+only; the dogfooded update step stays manual.
 
 **Rejected:** Symlinking the cache to the worktree to skip updates — defeats the pinned-SHA model
 real target projects use, so the harness would no longer dogfood the actual install path.

@@ -28,11 +28,7 @@ needs-triage ──┬─→ needs-info ──→ (back to triage when answered)
                └─→ wontfix → out-of-scope
 ```
 
-## Triage discipline (used by `triage`)
+## AFK gate checklist (used by `triage` step 4, `issues` step 5)
 
-- AI-disclaimer on every comment the agent writes.
-- Gather context + check `.out-of-scope/` before recommending.
-- Reproduce bugs before stamping.
-- Call `think` to flesh out an under-specified issue.
-- **"Thought-enough" checklist** before `ready-for-agent`: acceptance criteria are testable,
-  deps listed, vertical-slice scoped, no open design questions (the upstream gate for AFK).
+**"Thought-enough" checklist** before `ready-for-agent`: acceptance criteria are testable, deps
+listed, vertical-slice scoped, no open design questions (the upstream gate for AFK).

@@ -5,9 +5,8 @@ description: Disciplined diagnosis loop for hard bugs and performance regression
 
 # diagnose
 
-A discipline for hard bugs. Skip phases only when explicitly justified. Bound by
-`${CLAUDE_PLUGIN_ROOT}/shared/coding-discipline.md` (one variable at a time, goal-driven
-verification). Use the domain glossary for a clear model; respect stances in the touched area.
+Bound by `${CLAUDE_PLUGIN_ROOT}/shared/coding-discipline.md`. Skip phases only when explicitly
+justified. Use the domain glossary for a clear model; respect stances in the touched area.
 
 ## When to fire
 - "diagnose/debug this", a reported bug, something broken/throwing/failing, a perf regression.
@@ -31,16 +30,13 @@ verification). Use the domain glossary for a clear model; respect stances in the
 5. **Fix + regression test.** Write the regression test **before** the fix — **only if a correct
    seam exists** (exercises the real bug pattern at the call site). **No correct seam = that is the
    finding** (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`); flag it. Before writing the fix,
-   consult the conventions INDEX (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` global + project
-   `docs/conventions/INDEX.md`; project wins), as `builder`/`tdd` do. Then: failing test → fix →
+   consult the conventions INDEX per `agents/builder.md` step 2. Then: failing test → fix →
    passing → re-run the Phase-1 loop on the original scenario.
 6. **Cleanup + post-mortem.** Original no longer reproduces; regression test passes (or absent-seam
    documented); all `[DEBUG-]` removed; throwaways deleted; correct hypothesis stated in the
    commit. Then ask **what would have prevented this** — if architectural, hand to `architecture`.
 
-Read/append this skill's learnings in `docs/work/learnings/diagnose.md` per the convention
-(`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`) — read prior post-mortems before hypothesising, and
-append the step-6 "what would have prevented this" insight when it is reusable beyond this bug.
+Read/append this skill's learnings in `docs/work/learnings/diagnose.md` per the convention (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
 
 ## Pipeline
 - Reads:  the bug report; code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/*`; `docs/work/learnings/diagnose.md`

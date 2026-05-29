@@ -69,11 +69,10 @@ The reason should be durable. Avoid referencing temporary circumstances ("we're 
 
 ## When to check `.out-of-scope/`
 
-During triage (Step 1: Gather context), read all files in `.out-of-scope/`. When evaluating a new issue:
+When matching a new issue against `.out-of-scope/`:
 
-- Check if the request matches an existing out-of-scope concept
-- Matching is by concept similarity, not keyword — "night theme" matches `dark-mode.md`
-- If there's a match, surface it to the maintainer: "This is similar to `.out-of-scope/dark-mode.md` — we rejected this before because [reason]. Do you still feel the same way?"
+- Match by concept similarity, not keyword ("night theme" matches `dark-mode.md`)
+- Surface any match to the maintainer: "This is similar to `.out-of-scope/dark-mode.md` — we rejected this before because [reason]. Do you still feel the same way?"
 
 The maintainer may:
 
@@ -83,14 +82,11 @@ The maintainer may:
 
 ## When to write to `.out-of-scope/`
 
-Only when an **enhancement** (not a bug) is rejected as `wontfix`. The flow:
-
-1. Maintainer decides a feature request is out of scope
-2. Check if a matching `.out-of-scope/` file already exists
-3. If yes: append the new issue to the "Prior requests" list
-4. If no: create a new file with the concept name, decision, reason, and first prior request
-5. Post a comment on the issue explaining the decision and mentioning the `.out-of-scope/` file
-6. Close the issue with the `wontfix` label
+1. Check if a matching `.out-of-scope/` file already exists
+2. If yes: append the new issue to the "Prior requests" list
+3. If no: create a new file with the concept name, decision, reason, and first prior request
+4. Post a comment on the issue explaining the decision and mentioning the `.out-of-scope/` file
+5. Close the issue with the `wontfix` label
 
 ## Updating or removing out-of-scope files
 

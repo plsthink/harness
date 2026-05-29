@@ -6,9 +6,6 @@ disable-model-invocation: true
 
 # zoom-out
 
-Manual-only. Go up a layer: give a map of the relevant modules + callers in the project's glossary
-vocabulary (`docs/CONTEXT.md`).
-
 ## When to fire
 - Manual invocation only (the user says "zoom out").
 
@@ -16,9 +13,8 @@ vocabulary (`docs/CONTEXT.md`).
 
 1. Identify the area of code in question.
 2. Go up one abstraction layer.
-3. Map the relevant modules and their callers, using the domain glossary vocabulary (multi-package:
-   the per-package `packages/<pkg>/docs/CONTEXT.md` for the area via the `CONTEXT-MAP.md` spine, plus
-   root) and the deep-modules vocab `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` for interface/seam framing.
+3. Map the relevant modules and their callers using domain glossary vocab (multi-package fan-out:
+   `${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`) and `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` for interface/seam framing.
 
 ## Pipeline
 - Reads:  code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi)

@@ -11,7 +11,10 @@
 # literal {{LATER_KEY}} token would be re-substituted. That ordering is NOT pinned here: model-
 # authored values never carry placeholder tokens, and the only order-independent fixes add a perl/
 # awk dependency that would regress the shipped script's portability (lean-first: no fix until the
-# friction recurs). Pin the contract that matters, not the hypothetical.
+# friction recurs). Pin the contract that matters, not the hypothetical. The substitution KEY is
+# likewise interpolated raw into the sed LHS, so a key with regex metacharacters would over-match —
+# unfixed for the same reason: every template token is upper-snake [A-Z0-9_] and KEY=VALUE keys are
+# scaffold-internal, never free text.
 set -uo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

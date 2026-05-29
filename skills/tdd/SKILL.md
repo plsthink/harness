@@ -12,9 +12,8 @@ goal-driven verification).
 
 **OPT-IN, governed by `tdd-applies`** (the project's `AGENTS.md` HARNESS-CONFIG key — the schema
 single-sources it: `${CLAUDE_PLUGIN_ROOT}/scripts/check-onboarded.schema`). When `tdd-applies` is
-**false**, `execute-issue` skips the red-green gate and a task is **not** failed for lacking a prior
-failing test (see `execute-issue` steps 4–5); the red-green-refactor loop below applies as written
-only when `tdd-applies` is **true**. The test RUNNER resolves the same way the verifier resolves its
+**false**, the red-green-refactor loop below does NOT apply (see `execute-issue` steps 4–5 for the
+off-posture branch). The test RUNNER resolves the same way the verifier resolves its
 verify procedure: **prefer a project-local test Skill** if the project ships one, **else** the
 project's `test-command` HARNESS-CONFIG value (a plain command, not a Skill ref) — **never a
 hardcoded/assumed runner**; resolve it before running any test below.
@@ -24,9 +23,8 @@ hardcoded/assumed runner**; resolve it before running any test below.
 
 ## Procedure
 
-0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`);
-   on absent/stale, STOP and tell the user to run `/onboard`. (When invoked inside `execute-issue`,
-   its own step 0 already cleared the gate — re-running is harmless.)
+0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`).
+   (When invoked inside `execute-issue`, its own step 0 already cleared the gate — re-running is harmless.)
 1. **Plan.** Confirm the interface changes needed + which behaviors to test (prioritize — you
    can't test everything). Design interfaces for testability and hunt deep modules
    (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`); for surface/return-vs-side-effect/DI guidance
@@ -34,16 +32,13 @@ hardcoded/assumed runner**; resolve it before running any test below.
    **Get user approval on the plan** when interactive. Running AFK inside `execute-issue`, the
    `ready-for-agent` issue's acceptance criteria *are* the approved plan (the gate is upstream —
    stance: execute-issue-afk-autonomy); don't block on an absent user. Respect stances in the
-   touched area, and consult the conventions INDEX before editing — load convention docs matching
-   the files you'll touch (`${CLAUDE_PLUGIN_ROOT}/conventions/INDEX.md` global + project
-   `docs/conventions/INDEX.md`; project wins), as `builder` does.
+   touched area, and consult the conventions INDEX before editing per `agents/builder.md` step 2.
 2. **Tracer bullet.** Write ONE test for ONE behavior → it fails (RED) → minimal code → passes
    (GREEN). Proves the path end-to-end. **RED must be observed, not assumed:** run the project's
    `test-command` (or project-local test Skill — see intro) and confirm the new test actually ran
-   and failed for the behavior — coding-discipline rule 4's observed-verification bar (bound above),
-   which names the failure modes to rule out. What makes a
-   good vs bad test: [tests.md](references/tests.md). Mocking questions (boundaries only):
-   [mocking.md](references/mocking.md).
+   and failed for the behavior — coding-discipline rule 4's observed-verification bar (bound above).
+   What makes a good vs bad test: [tests.md](references/tests.md). Mocking questions (boundaries
+   only): [mocking.md](references/mocking.md).
 3. **Incremental loop.** For each remaining behavior: RED (next test) → GREEN (minimal code).
    One test at a time; only enough code to pass; don't anticipate future tests. **Never write all
    tests then all code** (horizontal slicing → tests of imagined behavior).
@@ -51,7 +46,6 @@ hardcoded/assumed runner**; resolve it before running any test below.
    (duplication, shallow modules, feature envy). Run tests after each step. Never refactor while RED.
 
 Read/append this skill's learnings in `docs/work/learnings/tdd.md` per the convention (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
-A missing seam needed for a test is itself a finding — report it, don't fabricate one.
 
 ## Pipeline
 - Reads:  `docs/work/<feature>/issues/NN-slug.md` (acceptance criteria); code; `docs/stances/*`;

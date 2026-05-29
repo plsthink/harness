@@ -1,7 +1,6 @@
 # Building the feedback loop
 
-Loaded by `diagnose` step 1 — the heart of the skill. A fast deterministic pass/fail signal is 90%
-of the fix.
+Loaded by `diagnose` step 1.
 
 ## Construction methods (try in roughly this order)
 1. **Failing test** at whatever seam reaches the bug (unit/integration/e2e).

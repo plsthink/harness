@@ -1,6 +1,6 @@
 # Issue tracker — docs/work layout & semantics
 
-Cited by: `prd`, `issues`, `triage`, `execute-issue`, `onboard`. The shared
+Cited by: `prd`, `issues`, `triage`, `execute-issue`. The shared
 state every pipeline skill reads/writes. File substrate is the single source of truth.
 
 ## Layout (always at repo root, committed)
@@ -40,23 +40,19 @@ Type:   <category>  # bug | enhancement
 
 ## Status merge-back (execute-issue)
 
-- **Green path:** `Status: done` is committed inside the worktree, then the branch lands via the
-  rebase-plus-fast-forward land procedure in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (single
-  source — no merge commit); then remove the worktree (it lives in the central home, per the same
-  module) + delete the branch.
+- **Green path:** `Status: done` is committed inside the worktree, then the branch lands per
+  `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` "Land procedure".
 - **Escalation path:** on retry-exhaustion, do **not** merge. Write `Status:` (needs-info/
   ready-for-human) + findings + handoff-doc-path to the issue file on the **main checkout
-  directly** (the kept worktree, in the central home per
-  `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`, is for inspection only, never the source of truth
-  for the failed status). Worktree = exclusive lock → no concurrent-edit conflict.
+  directly** (the kept worktree is for inspection only, never the source of truth for the failed
+  status). Worktree = exclusive lock → no concurrent-edit conflict.
 
 ## Reap (done-feature cleanup)
 
 The reaper (`${CLAUDE_PLUGIN_ROOT}/scripts/reap-done-features.sh`) sweeps spent feature dirs so the
 tracker shows only live work.
 
-- **Trigger:** `execute-issue`'s **green path only**, after the land completes. The escalation path
-  writes a non-`done` status and never lands, so it never reaps.
+- **Trigger:** `execute-issue`'s **green path only**, after the land completes.
 - **Guard (present AND all-done):** a feature dir is reaped only when its issue set is **non-empty**
   AND **every** issue reads `Status: done`. An empty issue set is never reaped — that is work not yet
   broken down, not finished work (the load-bearing vacuous-done guard).

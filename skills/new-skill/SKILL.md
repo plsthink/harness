@@ -24,13 +24,9 @@ shared over local).
    verifier/tdd defer to), pass a `.claude/skills/<name>/SKILL.md` dest instead — same template,
    same `scaffold.sh` (it refuses to overwrite either way). Pick the target from the request; don't
    write a project-local Skill into the harness's own `skills/`.
-3. **Draft:** fill the SKILL.md (description + triggers + ordered procedure + Pipeline footer).
-   Move vocabulary/formats/examples/tables into `references/x.md`, named + loaded-on-demand from
-   the procedure. Cross-cutting conventions → cite `${CLAUDE_PLUGIN_ROOT}/shared/...`, never copy.
-   Deterministic mechanics → `scripts/`.
-4. **Review against the checklist:** description has triggers; SKILL.md within the soft ~100-line
-   target; no time-sensitive info; consistent terminology; references one level deep; Pipeline
-   footer present.
+3. **Draft:** fill the SKILL.md (description + triggers + ordered procedure + Pipeline footer)
+   per the rules cited above.
+4. **Review:** standard cited above; no time-sensitive info; consistent terminology.
 5. **Update the pipeline graph** if the new skill changes the chain
    (`${CLAUDE_PLUGIN_ROOT}/shared/pipeline.md`), and emit a conventions routing entry if relevant.
 

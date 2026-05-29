@@ -17,6 +17,4 @@ delta over harness, never a restatement (single-source). Requires stable **rule-
   (`overrides: <rule-id>` — a deliberate project exception that survives future reconciliation,
   like a stance's `Rejected:`) or remove it as drift. Ask the user which.
 
-## Load-time precedence (context)
-Harness + project conventions load **additively**; on conflict the **project (more specific) wins
-locally**. Reconciliation keeps the *stored* set minimal — it doesn't change runtime precedence.
+Reconciliation changes only the *stored* set, not runtime precedence (see `conventions/INDEX.md`).

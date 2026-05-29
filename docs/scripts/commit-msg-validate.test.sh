@@ -37,6 +37,10 @@ expect "docs-typed planning artifact"     0 "" "docs: add git-workflow PRD"
 # Present-tense verbs that merely end in 'ed' must NOT be flagged (denylist, not blanket ed$).
 expect "embed (present) passes"           0 "" "feat: embed config"
 expect "speed (present) passes"           0 "" "feat: speed up parser"
+# Trailing whitespace/CR git strips before storing must NOT count toward the 72-char limit: a
+# 72-char subject plus trailing blanks or a CRLF terminator is a valid commit git would accept.
+expect "72-char subject + trailing spaces" 0 "" "feat: $(printf 'x%.0s' {1..72})  "
+expect "72-char subject + trailing CR"     0 "" "feat: $(printf 'x%.0s' {1..72})$(printf '\r')"
 
 # --- BLOCK cases (exit 2), one per violation class, asserting the named reason ---
 expect "unknown type blocked"             2 "unknown or missing type"   "frobnicate(auth): do a thing"
@@ -46,6 +50,8 @@ expect "uppercase scope blocked"          2 "malformed scope"           "feat(Au
 expect "leading capital blocked"          2 "leading capital"           "feat(auth): Add token refresh"
 expect "past tense blocked"               2 "past tense"                "feat(auth): added token refresh"
 expect "over-length subject blocked"      2 "over-length subject"       "feat(auth): $(printf 'x%.0s' {1..80})"
+# An all-whitespace subject collapses to empty after the trailing-trim and is caught as empty.
+expect "whitespace-only subject blocked"   2 "empty subject"             "feat:    "
 
 # --- BLOCK message is self-contained: states grammar + example + echoes the rejected message ---
 out=$(printf '%s' "feat(123): nope" | bash "$VALIDATE" 2>&1) || true

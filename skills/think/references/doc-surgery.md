@@ -1,7 +1,6 @@
 # Inline doc-surgery
 
-Loaded by `think` step 4 when domain docs exist and a term/claim/decision surfaces. The moves
-(from grill-with-docs). One level deep — formats live in `shared/`, cited from the SKILL.
+Loaded by `think` step 4. One level deep — formats live in `shared/`, cited from the SKILL.
 
 ## The moves (apply mid-interview, capture as they happen)
 

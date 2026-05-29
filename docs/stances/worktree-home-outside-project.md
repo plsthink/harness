@@ -4,8 +4,7 @@
 `~/.harness/worktrees/<project-slug>/issue-NN-slug` (`project-slug` = the repo-root basename), never
 inside the target project tree and never as a sibling of it. One tidy location the harness owns; the
 target repo and its parent dir stay pristine. This is **product** behavior (it runs in any target
-project) so the rule lives in the product git-workflow module (the follow-up PRD introduces it),
-not under `docs/`.
+project) so the rule lives in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`, not under `docs/`.
 
 **Why:** A worktree placed inside the repo would be walked by the nearest-`docs/` resolution and
 traversed by tree-scanning hooks (`check-refs.sh`, the mock `PostToolUse` gate) — the exact hazard

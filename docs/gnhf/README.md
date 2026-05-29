@@ -23,8 +23,10 @@ output meets the natural-language condition.
 | [coherence-audit.md](coherence-audit.md) | Reconcile internal inconsistency | A specific defect (dangling cite, glossary drift, duplicated spec, stale stance) |
 | [self-improve-umbrella.md](self-improve-umbrella.md) | Unattended self-improvement | Runs the four above as ordered phases; halts when a full cycle is dry |
 
-Run a single goal interactively; run the umbrella for long unattended sessions. The launcher pairs
-each flow with a default `--stop-when` condition. That string lives in **one place** — `run.sh`;
+Run a single goal interactively; run the umbrella for long unattended sessions. Always launch via
+`run.sh` (or pass your own `--stop-when`): a bare `gnhf` invocation with no stop condition runs to
+the token budget long past the point the surface is exhausted, grinding marginal churn. The launcher
+pairs each flow with a default `--stop-when` condition. That string lives in **one place** — `run.sh`;
 gnhf injects it into the agent at runtime, and the prompt files describe their halt only in prose
 (no verbatim string), so there is nothing to keep in sync:
 
@@ -44,14 +46,11 @@ Each invocation expands to `gnhf --current-branch --stop-when "<default conditio
 
 These prompts split self-improvement by **forcing function** — each goal carries its own external
 pressure that generates real work — and make halting honest rather than optional. Every objective
-obeys the same mandatory rules, single-sourced in [_rules.md](_rules.md): one forcing function per
-iteration, halt honestly, measure against a fresh plugin cache (product files under `skills/`,
-`agents/`, `hooks/`, `shared/`, `conventions/`, `templates/` are invisible until
-`claude plugin update harness@harness`; `docs/`, `.claude/settings.json`, `CLAUDE.md`, `README.md`
-are live immediately — see
-[../stances/measure-product-changes-via-plugin-update.md](../stances/measure-product-changes-via-plugin-update.md)),
-honor the latest conventions/templates/authoring-standard, and make one coherent committed change
-per iteration.
+obeys the same mandatory rules, single-sourced in [_rules.md](_rules.md) and read at runtime: one
+forcing function per iteration, halt honestly, measure against a fresh plugin cache, honor the
+latest conventions/templates/authoring-standard, one coherent committed change per iteration. See
+[_rules.md](_rules.md) for the full text — including which files are live immediately versus need a
+plugin update.
 
 ## Umbrella phase order
 

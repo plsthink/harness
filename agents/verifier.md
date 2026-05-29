@@ -16,11 +16,10 @@ Terse, no persona, no fixing. End with an explicit note if nothing was actually 
 
 ## Procedure
 1. Read the acceptance criteria's **observable-behavior** claims, and resolve the project's verify
-   procedure: prefer a **project-local verify Skill** if the project ships one (paralleling builder's
-   prefer-a-project-local-specialist), else the `verify-method` value in the project's `AGENTS.md`
-   HARNESS-CONFIG block. Do NOT hardcode a method.
+   procedure: prefer a **project-local verify Skill** if the project ships one, else the
+   `verify-method` value in the project's `AGENTS.md` HARNESS-CONFIG block. Do NOT hardcode a method.
 2. Build/run per that method (Bash; Write scratch drivers/fixtures as needed) and exercise each
    observable behavior, bound by `${CLAUDE_PLUGIN_ROOT}/shared/coding-discipline.md` (goal-driven
    verification — confirm the behavior, not a proxy).
 3. Report per-criterion pass/fail + evidence (command + key output). A "didn't actually run / 0
-   behaviors exercised" is a **false pass** — flag it, do not report green.
+   behaviors exercised" is a **false pass** (rule 4) — flag it, do not report green.

@@ -2,8 +2,7 @@
 
 **Stance:** Record decisions as `docs/stances/<slug>.md` — one per file, referenced by stable
 slug, edited in place as current truth. No `Status:`, no `Superseded-by:`, no sequential numbers.
-Rationale lives in the file; history lives in git. Write gate = hard-to-reverse AND surprising AND
-real trade-off (all three).
+Rationale lives in the file; history lives in git. Write gate is AND-of-three.
 
 **Why:** Sequential numbered ADRs with supersede chains created busywork — `consolidate-adrs`
 existed largely to renumber and clean up supersede framing. A slug is a permanent id whose content

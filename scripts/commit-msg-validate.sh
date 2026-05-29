@@ -7,7 +7,7 @@
 #
 # Grammar (single source: ${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md):
 #   header   = <type>(\(<scope>\))?: <subject>
-#   type     = feat|fix|refactor|docs|chore|test|perf|build|ci|revert  (canonical set only)
+#   type     = one of the canonical set (git-workflow.md, above) — enforced by the case below
 #   scope    = OPTIONAL lowercase area/domain token [a-z][a-z0-9-]* — never a prd/issue number
 #   subject  = present tense, no leading capital, <=72 chars
 #
@@ -27,6 +27,7 @@ else
   msg="$(cat)"
 fi
 header="${msg%%$'\n'*}"
+header="${header%$'\r'}"   # strip a trailing CR (CRLF input) — git ignores it before storing
 
 # Block: print the violation + the full grammar + a correct example + the rejected message, then
 # exit 2. This block is intentionally complete so a cold agent can comply without the spec loaded.
@@ -79,6 +80,10 @@ if [ -n "$has_scope" ]; then
     block "malformed scope: '($scope)' — scope must be a lowercase area/domain token, never a number"
   fi
 fi
+
+# Trim trailing whitespace: git strips it before storing, so it must not count toward the length
+# limit, and an all-whitespace subject collapses to empty (caught just below) — matching git.
+subject="${subject%"${subject##*[![:space:]]}"}"
 
 # subject must be non-empty.
 [ -n "$subject" ] || block "empty subject"

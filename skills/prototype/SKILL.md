@@ -20,9 +20,8 @@ A prototype is **throwaway code that answers a question**. The question decides 
    Getting the branch wrong wastes the whole prototype. If genuinely ambiguous and the user is
    unreachable, default by surrounding code (backend → logic; page/component → UI) and state the
    assumption at the top.
-2. **Obey the rules for both branches** (see [rules.md](references/rules.md)): throwaway + clearly
-   marked, one command to run, no persistence by default, skip polish, surface full state each
-   step, delete-or-absorb when done.
+2. **Obey the rules for both branches** — [rules.md](references/rules.md) (throwaway, one-cmd,
+   no persistence, no polish, surface state, delete-or-absorb).
 3. **Capture the answer durably** when done — the answer is the only thing worth keeping. Commit
    message / stance / issue / a `NOTES.md` next to the prototype, with the question it answered. If
    a snippet encodes a decision precisely, it can feed `prd`/`issues` (the prototype-snippet

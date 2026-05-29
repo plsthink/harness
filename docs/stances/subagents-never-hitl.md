@@ -1,9 +1,5 @@
 # Subagents never do HITL; every input is a precondition, onboarding is the gate
 
-The children are **fresh dispatched subagents** with a thin pointer-brief, not context-inheriting
-forks — see stance: dispatch-fresh-not-fork. That mechanism *strengthens* this stance: the thin
-brief is exactly "every input a precondition" made literal.
-
 **Stance:** Dispatched subagents (the `execute-issue` children — builder/reviewer/verifier — and any
 skill run as a dispatched subagent) are **non-interactive**: they cannot pause for the human. All
 HITL lives at the **orchestrator** (the clean main session the user drives). Therefore every input a
@@ -35,3 +31,7 @@ can't HITL; the ask moves up to the orchestrator/onboard boundary. Blanket "harn
 onboarded" — deadlocks (can't onboard, can't think-first); the gate is **scoped** to
 config-consuming skills. A PreToolUse hard-block hook now — heavier than a step-0 check; promote
 only if skills are seen forgetting the check (hooks sparingly, per stance: conventions-not-personas).
+
+**Relationship to dispatch-fresh-not-fork:** that stance's thin brief makes "every input a
+precondition" literal — strengthening this stance, which owns the non-interactivity +
+onboarding-gate principle, mechanism-neutral.

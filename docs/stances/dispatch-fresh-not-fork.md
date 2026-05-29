@@ -1,9 +1,9 @@
 # Dispatch fresh subagents with a thin pointer-brief, not context-inheriting forks
 
 **Stance:** `execute-issue` dispatches each builder/reviewer/verifier as a **fresh subagent**
-(clean context), briefed by a **thin pointer-template** that *references* on-disk artifacts (issue +
-acceptance criteria, config-completeness marker, worktree path, conventions INDEX, agent role +
-slice scope, escalate-don't-ask reminder) — it **never copies their content**. This replaces the
+(clean context), briefed by a **thin pointer-template** that *references* on-disk artifacts (the slots of
+`${CLAUDE_PLUGIN_ROOT}/shared/dispatch-brief.md`) — it
+**never copies their content**. This replaces the
 prior context-inheriting fork (`CLAUDE_CODE_FORK_SUBAGENT`). Because each child's context is now
 `(thin brief + what it reads from disk)` and independent of parent size, **the orchestrator session
 may grow long without degrading children**. Spec amendments (the backward edge) are authored
@@ -23,8 +23,7 @@ a mechanism — it still accrues decomposition + per-task summaries + its own re
 forks inherit a heavier parent. Fresh dispatch removes parent size as a quality variable entirely.
 Amendments live in the **issue file** because `reviewer`/`verifier` are separate fresh subagents
 that read the issue from disk; an amendment carried only in the builder's brief would have builder
-and reviewer gating **different specs** — silent divergence. A *fat* brief is a smell: wanting to
-paste context in means the issue is under-specified — fix the issue, keep the brief thin.
+and reviewer gating **different specs** — silent divergence. Fat-brief smell — dispatch-brief.md.
 
 **Rejected:** Context-inheriting forks (the prior model) — coupling + compounding parent bloat,
 above. Keep a fork only for the backward-edge amend — keeps a dual spawn model alive for one edge;
@@ -33,8 +32,5 @@ inline. Amendment as a sidecar delta in the spawn brief — two sources of truth
 read the stale issue → silent spec divergence.
 
 **Relationship to subagents-never-hitl:** that stance owns the non-interactivity + onboarding-gate
-principle (intact across this change); this stance owns the spawn mechanism (fresh dispatch via the
-thin brief, replacing the prior context-inheriting fork). The principle is mechanism-neutral, which
-is why the stance was renamed from `forks-never-hitl` once forks were gone. The implementation —
-the dispatch-brief contract (`${CLAUDE_PLUGIN_ROOT}/shared/dispatch-brief.md`), the execute-issue
-skill + loop flip, the pipeline-doc wording, and that rename — has landed.
+principle; this stance owns the spawn mechanism (fresh dispatch via the thin brief, replacing the
+prior context-inheriting fork).

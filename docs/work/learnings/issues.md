@@ -13,3 +13,11 @@
   path-level miss the orchestrator corrected by relocating the script + schema to a top-level
   `scripts/` product root, keeping only its dogfood `.test.sh` under `docs/scripts/`. When slicing,
   decide a new script's resolution root by *where it runs*, not where it's first authored.
+
+- **Multi-fixture infra: build all base fixtures as parallel up-front slices before any apparatus
+  or consumer slice.** A consumer slice that depends on a specific fixture variant (e.g. an
+  exercise targeting a `_shallow` overlay of one mock and the `_clean` overlay of another) drags
+  every cited base fixture into its dep chain — if the bases weren't already in main, the
+  consumer slice forks into "build fixture + wire usage" and any apparatus slice can't smoke-test
+  against it. Order base-fixture slices as the foundation row of the dep graph, not the leaves;
+  consumer slices then collapse to "wire usage" only.

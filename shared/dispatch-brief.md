@@ -16,8 +16,7 @@ their content. The child reads the real artifacts itself.
 Every slot holds a **reference** — a path or a marker naming where the truth lives. It NEVER holds a
 copy of the issue text, the acceptance criteria, or the resolved config values. A pointer cannot
 drift: there is exactly one issue file, one criteria block, one config marker, and the child reads
-the live copy. Pasting any of them would mint a second copy that silently goes stale against the
-source.
+the live copy.
 
 **A fat brief is a smell.** If the brief feels like it needs embedded content to be usable, the
 issue is under-specified — fix the issue (its spec / acceptance criteria), do not fatten the brief.
@@ -33,16 +32,11 @@ The brief has EXACTLY these seven pointer slots — each a reference, no embedde
    decomposition unit from SKILL.md step 3), not a restatement of the work.
 4. **Acceptance-criteria reference** — a pointer to the criteria block inside the issue file (the
    gate the reviewer/verifier checks against), not a copy of the criteria.
-5. **Config-completeness marker** — a pointer to the project's recorded behavior-config (the
-   `AGENTS.md` block the onboarding gate validates,
-   `${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`). The required keys it covers are owned by the
-   schema `${CLAUDE_PLUGIN_ROOT}/scripts/check-onboarded.schema` (the single source of the key
-   contract) — the brief cites that schema rather than enumerating the keys inline, so the list
-   cannot drift. The brief names where these live; it does not transcribe their values.
+5. **Config-completeness marker** — a pointer to the project's recorded behavior-config (the `AGENTS.md`
+   block the onboarding gate validates, `${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`).
 6. **Worktree path** — the absolute path of the per-issue worktree the child works in (the
    central-home path per `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md`).
-7. **Escalate-don't-ask reminder** — the reminder that a fresh dispatched subagent never pauses to ask the human; on
-   a genuinely blocking gap it reports back / escalates rather than guessing.
+7. **Escalate-don't-ask reminder** — `stance: subagents-never-hitl` (escalate, never guess, on a blocking gap).
 
 ## Scope of this contract
 

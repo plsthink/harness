@@ -5,24 +5,19 @@ description: Break a plan, spec, or PRD into independently-grabbable issues usin
 
 # issues
 
-PRD/plan → `docs/work/<feature>/issues/NN-slug.md` tracer-bullet slices. Each slice cuts ALL layers
-end-to-end (not a horizontal layer slice); many thin > few thick. Never edits the parent PRD.
+PRD/plan → `docs/work/<feature>/issues/NN-slug.md` tracer-bullet slices. Parent PRD untouched.
 
 ## When to fire
 - User wants a plan/PRD broken into issues or implementation tickets.
 
 ## Procedure
 
-0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`);
-   on absent/stale, STOP and tell the user to run `/onboard`.
+0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`).
 1. **Gather context.** Work from the conversation/PRD. If passed an issue ref (number/URL/path),
    fetch and read its full body + comments.
 2. **Explore the codebase** (if not already). Titles/descriptions use the **domain glossary**
    vocabulary; respect stances in the touched area.
-3. **Draft vertical slices.** Each = a narrow but COMPLETE path through every layer (schema, API,
-   UI, tests), demoable on its own. Tag each **HITL** (needs human: arch decision / design review)
-   or **AFK** (implementable + mergeable unattended) — prefer AFK. See
-   [slicing.md](references/slicing.md).
+3. **Draft vertical slices**, each tagged **HITL** or **AFK** ([slicing.md](references/slicing.md)).
 4. **Quiz the user.** Present a numbered breakdown: Title / Type (HITL|AFK) / Blocked-by / user
    stories covered. Ask: granularity right? deps correct? merge or split any? HITL/AFK correct?
    Iterate until approved.
@@ -31,13 +26,10 @@ end-to-end (not a horizontal layer slice); many thin > few thick. Never edits th
 6. **Publish in dependency order** (blockers first, so "Blocked by" can cite real ids). Scaffold
    each from `templates/work/issue.md` via `templates/scaffold.sh`; fill What-to-build / Acceptance criteria / Blocked-by.
    Layout + Status/Type semantics: `${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`. Then **commit
-   the whole slice breakdown in ONE `docs` commit** following the grammar in
+   the whole slice breakdown in ONE `docs` commit** per
    `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (e.g. `docs: break git-workflow into issues`).
-   Agent-issued, so the enforcement hook governs it. After this the tree is clean: no pending
-   changes for the slice files.
 
-**No file paths/code snippets** (same prototype-snippet exception as `prd`). Read this skill's
-learnings in `docs/work/learnings/issues.md` per the convention (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
+Read/append this skill's learnings in `docs/work/learnings/issues.md` per the convention (`${CLAUDE_PLUGIN_ROOT}/shared/learnings.md`).
 
 ## Pipeline
 - Reads:  `docs/work/<feature>/PRD.md`; conversation; code; `docs/work/learnings/issues.md`

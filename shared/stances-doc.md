@@ -1,8 +1,7 @@
 # Stance format (ex-ADR)
 
 Cited by: `think`, `architecture`, `onboard`, `docs-review` (think/architecture record a stance, onboard reshapes migrated ADRs into this format, docs-review is the periodic sweep that checks docs against this spec; consumers cite the project's `docs/stances/*`, not this format spec). A stance is a decision
-recorded as **current truth**, not a log. Renamed from ADR; the renumber/supersede machinery is
-gone (there are no numbers and nothing is superseded).
+recorded as **current truth**, not a log.
 
 ## Format
 

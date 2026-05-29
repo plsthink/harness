@@ -5,38 +5,25 @@ description: Turn the current conversation and codebase understanding into a PRD
 
 # prd
 
-Synthesize conversation + codebase understanding → a PRD at `docs/work/<feature>/PRD.md`. **Do not
-interview** — that was `think`'s job; synthesize what you already know.
+**Do not interview** — that's `think`'s job.
 
 ## When to fire
 - User wants a PRD from the current context, or a `think` session has converged.
 
 ## Procedure
 
-0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`);
-   on absent/stale, STOP and tell the user to run `/onboard`.
+0. **Onboarding gate.** Run the step-0 behavior-config check (`${CLAUDE_PLUGIN_ROOT}/shared/onboarding-gate.md`).
 1. **Explore the repo** to ground the current state (if not already done). Use the project's
-   **domain glossary vocabulary** throughout (`docs/CONTEXT.md`; for multi-package, also the
-   per-package `packages/<pkg>/docs/CONTEXT.md` for the packages in scope via the `CONTEXT-MAP.md`
-   spine), and respect stances in the area you're touching (`docs/stances/*`).
-2. **Sketch the modules** to build/modify. Hunt **deep modules** — small interface, deep
-   implementation, testable in isolation — using
-   `${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md` (incl. the deletion test). **Confirm with the
-   user** that the modules match expectations and **which** modules they want tests for.
-3. **Write the PRD** from `templates/work/PRD.md` (scaffold via `templates/scaffold.sh`), filling
-   the closed sections: Problem, Solution, long User Stories (`As an <actor>, I want <feature>, so
-   that <benefit>` — extensive), Implementation Decisions, Testing Decisions, Out of Scope, Notes.
-   See [prd-content.md](references/prd-content.md) for what each section must/must-not hold.
+   **domain glossary vocabulary** throughout (`docs/CONTEXT.md`; multi-package fan-out:
+   `${CLAUDE_PLUGIN_ROOT}/shared/context-doc.md`), and respect stances in the touched area (`docs/stances/*`).
+2. **Sketch the modules** to build/modify. Hunt **deep modules** (`${CLAUDE_PLUGIN_ROOT}/shared/deep-modules.md`).
+   **Confirm with the user** that the modules match expectations and **which** modules they want tests for.
+3. **Write the PRD** from `templates/work/PRD.md` (scaffold via `templates/scaffold.sh`); fill the
+   closed sections per [prd-content.md](references/prd-content.md).
 4. **Publish** the PRD to `docs/work/<feature>/PRD.md` (`${CLAUDE_PLUGIN_ROOT}/shared/issue-tracker.md`).
    A PRD carries no `Status:` (that's a per-issue field); a converged design lets `issues` stamp its
    slices `ready-for-agent` without extra triage. Then **commit the PRD**: one `docs`-typed commit
-   following the grammar in `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (e.g.
-   `docs: add git-workflow PRD`). Agent-issued, so the enforcement hook governs it. After this the
-   tree is clean: no pending changes for the PRD.
-
-**No file paths or code snippets** in the PRD (they go stale). Exception: a prototype-produced
-snippet that encodes a decision more precisely than prose (state machine / reducer / schema / type
-shape) — inline the decision-rich bit and note it came from a prototype.
+   per `${CLAUDE_PLUGIN_ROOT}/shared/git-workflow.md` (e.g. `docs: add git-workflow PRD`).
 
 ## Pipeline
 - Reads:  conversation; code; `docs/CONTEXT.md` (+ `CONTEXT-MAP.md` for multi), `docs/stances/*`; prototype output (if any)

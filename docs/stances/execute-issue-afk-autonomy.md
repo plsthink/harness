@@ -2,11 +2,10 @@
 
 **Stance:** `execute-issue` runs fully AFK on a `ready-for-agent` issue — decomposing tasks at
 runtime, dispatching a **fresh subagent** builder per task with a thin pointer-brief (see stance:
-dispatch-fresh-not-fork — no longer a context-inheriting fork), then a **two-gate
-review**: `reviewer` (static, against acceptance criteria) and, when the criteria declare
-observable behavior, `verifier` (dynamic — builds/runs the app via the project's verify config).
-tdd runs inside each task **only when the project's `tdd-applies` config is on** (no longer
-unconditional). Bounded retries (~3).
+dispatch-fresh-not-fork), then a **two-gate review**: `reviewer` (static, against acceptance
+criteria) and, when the criteria declare observable behavior, `verifier` (dynamic — builds/runs the
+app via the project's verify config). tdd runs inside each task **only when the project's
+`tdd-applies` config is on**. Bounded retries (~3).
 
 The issue's **goal is frozen, its path is mutable.** The upstream human `think→issues→triage` gate
 defined "done"; the agent may not edit that. But on a **path-level** failure — wrong assumption,
@@ -22,15 +21,12 @@ checkout, emit a handoff doc.
 owns "done," so the agent can't Goodhart the bar by editing acceptance criteria — but it repairs
 the *path* without a human round-trip on every wrinkle, which complex tasks always have. The
 **orchestrator**, not a child, does the rewrite (children never HITL — see stance: subagents-never-hitl),
-reusing the existing think/prd/issues skills via the backward pipeline edge, running inline and
-writing the result to the issue file so every child reads one amended spec. Dispatching each task as
-a fresh subagent gives a clean per-task context with no cross-task drift (siblings share nothing)
-and makes orchestrator length irrelevant to child quality (see stance: dispatch-fresh-not-fork). A
-worktree per issue
-is an exclusive lock, so green-rides-the-merge while escalation writes status to main directly — no
-concurrent-edit conflict, and every autonomous amendment is auditable/revertable via git, which
-licenses the autonomy. The `verifier` gate catches integration/app-level behavior tdd and
-`reviewer` can't; conditional, because many changes have no runnable behavior. This implies
+so every child reads one amended spec (fresh-dispatch mechanics: stance: dispatch-fresh-not-fork).
+A worktree per issue is an exclusive lock, so green-rides-the-merge while escalation writes status
+to main directly — no concurrent-edit conflict, and every autonomous amendment is
+auditable/revertable via git, which licenses the autonomy. The `verifier` gate catches
+integration/app-level behavior tdd and `reviewer` can't; conditional, because many changes have no
+runnable behavior. This implies
 `issues`/`triage` need an explicit "thought-enough" checklist before stamping.
 
 **Rejected:** Frozen *whole* spec (stop+handoff on every spec wrinkle) — defeats AFK on
