@@ -1,8 +1,8 @@
 # Agents are a generic stance/tool floor + project override, not an expert team
 
 **Stance:** Ship 4 generic agents (investigator/builder/reviewer/verifier) as a stance+tools floor.
-`execute-issue` + `architecture` prefer a project-local specialist (`.claude/agents/*`) if the
-project ships one, else fall back to the floor. Grow the roster deliberately via `new-agent`. No
+`execute-issue` prefers a project-local specialist (`.claude/agents/*`) if the project ships one,
+else falls back to the floor. Grow the roster deliberately via `new-agent`. No
 on-the-fly recruiter, no persona-specialized expert team.
 
 **Why:** The real axis separating agents is stance+tools, not a domain label. `verifier` (the 4th)
